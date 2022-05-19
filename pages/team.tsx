@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 const Team: NextPage = () => {
   return (
-    <MainContainer>
+    <div className="container mx-auto px-4">
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <h1>Team</h1>
       <p>This is the Team page. You can edit this page by editing the file</p>
-    </MainContainer>
+    </div>
   );
 };
 
