@@ -4,7 +4,7 @@ import { FaGithub } from "react-icons/fa";
 export const Header: React.FC = () => {
   return (
     <div className="flex justify-center h-16 w-full bg-white opacity-70 shadow-md">
-      <div className="flex flex-row w-[52rem] h-full border-2 px-2">
+      <div className="flex flex-row w-[52rem] h-full px-2">
         <div className="basis-3/4 flex items-center">
           <>アイコン</>
           <>サービス名</>
