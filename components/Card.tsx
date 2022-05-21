@@ -6,7 +6,7 @@ type Props = Required<{
 
 export const Card: React.FC<Props> = ({ children }) => {
   return (
-    <div className="shadow-symmetric bg-white opacity-70 p-6 my-4">
+    <div className="p-6 my-4 bg-white shadow-symmetric opacity-70">
       {children}
     </div>
   );

@@ -12,16 +12,16 @@ const Team: NextPage = () => {
           <>
             <div className="flex justify-center py-2">
               <input
-                className="border border-slate-400 rounded p-[0.5rem] text-gray-700"
+                className="p-[0.5rem] text-gray-700 rounded border border-slate-400"
                 id="username"
                 type="text"
                 placeholder="名前を入力"
               ></input>
-              <button className="ml-3 bg-teal-500 hover:bg-teal-600 text-white py-1 px-4 rounded">
+              <button className="py-1 px-4 ml-3 text-white bg-teal-500 hover:bg-teal-600 rounded">
                 追加
               </button>
             </div>
-            <div className="flex mx-16 my-5 flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 my-5 mx-16">
               <MemberChip name="佐藤二朗" />
               <MemberChip name="佐藤二朗" />
               <MemberChip name="佐藤二朗" />

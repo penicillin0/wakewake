@@ -5,7 +5,7 @@ type Props = {
 
 export const NumberingTypography: React.FC<Props> = (props) => {
   return (
-    <div className="px-1 py-2 text-lg mt-9 text-gray-900">
+    <div className="py-2 px-1 mt-9 text-lg text-gray-900">
       {props.numbering}. &nbsp;{props.text}
     </div>
   );
