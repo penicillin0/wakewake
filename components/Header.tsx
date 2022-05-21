@@ -3,13 +3,13 @@ import { FaGithub } from "react-icons/fa";
 
 export const Header: React.FC = () => {
   return (
-    <div className="flex justify-center h-16 w-full bg-white opacity-70 shadow-md">
-      <div className="flex flex-row w-[52rem] h-full px-2">
-        <div className="basis-3/4 flex items-center">
+    <div className="flex justify-center w-full h-16 bg-white shadow-md opacity-70">
+      <div className="flex flex-row px-2 w-[52rem] h-full">
+        <div className="flex basis-3/4 items-center">
           <>アイコン</>
           <>サービス名</>
         </div>
-        <div className="basis-1/4 flex justify-end items-center">
+        <div className="flex basis-1/4 justify-end items-center">
           <IconContext.Provider value={{ color: "#111", size: "2.5rem" }}>
             <FaGithub />
           </IconContext.Provider>
