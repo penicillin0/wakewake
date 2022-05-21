@@ -8,6 +8,9 @@ module.exports = {
       boxShadow: {
         symmetric: "0 0 8px 0 rgb(0 0 0 / 20%)",
       },
+      borderWidth: {
+        "3vw": "3vw",
+      },
     },
   },
   plugins: [],
