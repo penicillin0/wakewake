@@ -54,7 +54,17 @@ const Team: NextPage = () => {
         </Card>
         <NumberingTypography numbering={2} text="どうチーム分けしますか？" />
         <Card>
-          <>aa</>
+          <div className="flex justify-center">
+            <select
+              className="block py-2 px-3 text-base text-gray-700 focus:text-gray-700 rounded border border-gray-400 focus:border-blue-600 focus:outline-none"
+              aria-label="Default select example"
+            >
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
         </Card>
         <NumberingTypography numbering={3} text="チーム分け完了!" />
         <Card>
