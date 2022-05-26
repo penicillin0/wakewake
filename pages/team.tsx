@@ -4,6 +4,11 @@ import { MemberChip } from "../components/MemberChip";
 import { NumberingTypography } from "../components/NumberingTypography";
 
 const Team: NextPage = () => {
+  const suggestTeamNum = (): number[] => {
+    // TODO: チーム数を提案ロジックを書く
+    return [1, 2, 3];
+  };
+
   return (
     <div className="flex justify-center">
       <div className="w-[52rem] h-[100rem]">
@@ -54,15 +59,18 @@ const Team: NextPage = () => {
         </Card>
         <NumberingTypography numbering={2} text="どうチーム分けしますか？" />
         <Card>
-          <div className="flex justify-center">
+          <div className="flex items-center px-40">
+            <div className="pr-[10%] text-xl text-teal-600">グループ数</div>
             <select
               className="block py-2 px-3 text-base text-gray-700 focus:text-gray-700 rounded border border-gray-400 focus:border-blue-600 focus:outline-none"
               aria-label="Default select example"
             >
-              <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option selected>1チームのメンバー数を選択</option>
+              {suggestTeamNum().map((num) => (
+                <option key={num} value={num}>
+                  {num}
+                </option>
+              ))}
             </select>
           </div>
         </Card>
