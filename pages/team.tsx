@@ -66,7 +66,7 @@ const Team: NextPage = () => {
                 className="block py-2 px-3 text-base text-gray-700 focus:text-gray-700 rounded border border-gray-400 focus:border-blue-600 focus:outline-none"
                 aria-label="Default select example"
               >
-                <option selected>1チームのメンバー数を選択</option>
+                <option selected>メンバー数を選択</option>
                 {suggestTeamNum().map((num) => (
                   <option key={num} value={num}>
                     {num}
