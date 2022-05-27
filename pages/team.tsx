@@ -59,19 +59,26 @@ const Team: NextPage = () => {
         </Card>
         <NumberingTypography numbering={2} text="どうチーム分けしますか？" />
         <Card>
-          <div className="flex items-center px-40">
-            <div className="pr-[10%] text-xl text-teal-600">グループ数</div>
-            <select
-              className="block py-2 px-3 text-base text-gray-700 focus:text-gray-700 rounded border border-gray-400 focus:border-blue-600 focus:outline-none"
-              aria-label="Default select example"
-            >
-              <option selected>1チームのメンバー数を選択</option>
-              {suggestTeamNum().map((num) => (
-                <option key={num} value={num}>
-                  {num}
-                </option>
-              ))}
-            </select>
+          <div className="mx-40">
+            <div className="flex items-center mb-5">
+              <div className="pr-[10%] text-xl text-teal-600">グループ数</div>
+              <select
+                className="block py-2 px-3 text-base text-gray-700 focus:text-gray-700 rounded border border-gray-400 focus:border-blue-600 focus:outline-none"
+                aria-label="Default select example"
+              >
+                <option selected>1チームのメンバー数を選択</option>
+                {suggestTeamNum().map((num) => (
+                  <option key={num} value={num}>
+                    {num}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="flex flex-col">
+              <div>checkbox zone</div>
+              <div>checkbox zone</div>
+              <div>checkbox zone</div>
+            </div>
           </div>
         </Card>
         <NumberingTypography numbering={3} text="チーム分け完了!" />
