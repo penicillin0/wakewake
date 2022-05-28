@@ -23,7 +23,7 @@ const Team: NextPage = () => {
                 type="text"
                 placeholder="名前を入力"
               ></input>
-              <button className="py-1 px-4 ml-3 text-white bg-teal-500 hover:bg-teal-600 rounded">
+              <button className="py-1 px-4 ml-3 text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded">
                 追加
               </button>
             </div>
@@ -75,10 +75,15 @@ const Team: NextPage = () => {
                 ))}
               </select>
             </div>
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col mb-6 space-y-2">
               <CheckboxForTeamCondition labelText="超過したメンバーを別グループにする" />
               <CheckboxForTeamCondition labelText="チームリーダーをランダムで決定する ( 後から変更できます )" />
               <CheckboxForTeamCondition labelText="チーム名を自動で決定する ( 後から変更できます )" />
+            </div>
+            <div className="flex justify-center">
+              <button className="py-1 px-4 text-xl  text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md">
+                実行する
+              </button>
             </div>
           </div>
         </Card>
