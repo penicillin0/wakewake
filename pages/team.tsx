@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import { Card } from "../components/Card";
+import { CheckboxForTeamCondition } from "../components/checkboxForTeamCondition";
 import { MemberChip } from "../components/MemberChip";
 import { NumberingTypography } from "../components/NumberingTypography";
 
@@ -60,7 +61,7 @@ const Team: NextPage = () => {
         <NumberingTypography numbering={2} text="どうチーム分けしますか？" />
         <Card>
           <div className="mx-40">
-            <div className="flex items-center mb-5">
+            <div className="flex items-center mb-6">
               <div className="pr-[10%] text-xl text-teal-600">グループ数</div>
               <select
                 className="block py-2 px-3 text-base text-gray-700 focus:text-gray-700 rounded border border-gray-400 focus:border-blue-600 focus:outline-none"
@@ -74,10 +75,10 @@ const Team: NextPage = () => {
                 ))}
               </select>
             </div>
-            <div className="flex flex-col">
-              <div>checkbox zone</div>
-              <div>checkbox zone</div>
-              <div>checkbox zone</div>
+            <div className="flex flex-col space-y-2">
+              <CheckboxForTeamCondition labelText="超過したメンバーを別グループにする" />
+              <CheckboxForTeamCondition labelText="チームリーダーをランダムで決定する ( 後から変更できます )" />
+              <CheckboxForTeamCondition labelText="チーム名を自動で決定する ( 後から変更できます )" />
             </div>
           </div>
         </Card>
