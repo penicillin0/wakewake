@@ -89,7 +89,21 @@ const Team: NextPage = () => {
         </Card>
         <NumberingTypography numbering={3} text="チーム分け完了!" />
         <Card>
-          <>aa</>
+          <div className="mx-7">
+            <div className="flex justify-between items-center">
+              <span className="mr-16 text-sm text-slate-800">
+                チーム名をクリックすることでチーム名を変更できます。
+              </span>
+              <div>
+                <button className="py-1 px-2 mr-4 text-base text-white bg-teal-600 hover:bg-teal-700 active:bg-teal-800 rounded-md">
+                  再実行
+                </button>
+                <button className="py-1 px-2 text-base  text-white bg-rose-600 hover:bg-rose-700 active:bg-rose-800 rounded-md">
+                  クリア
+                </button>
+              </div>
+            </div>
+          </div>
         </Card>
       </div>
     </div>
