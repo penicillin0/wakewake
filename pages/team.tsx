@@ -95,10 +95,10 @@ const Team: NextPage = () => {
                 チーム名をクリックすることでチーム名を変更できます。
               </span>
               <div>
-                <button className="py-1 px-2 mr-4 text-base text-white bg-teal-600 hover:bg-teal-700 active:bg-teal-800 rounded-md">
+                <button className="py-1 px-2 mr-4 text-base text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md">
                   再実行
                 </button>
-                <button className="py-1 px-2 text-base  text-white bg-rose-600 hover:bg-rose-700 active:bg-rose-800 rounded-md">
+                <button className="py-1 px-2 text-base  text-white bg-rose-500 hover:bg-rose-600 active:bg-rose-700 rounded-md">
                   クリア
                 </button>
               </div>
