@@ -3,6 +3,7 @@ import { Card } from "../components/Card";
 import { CheckboxForTeamCondition } from "../components/checkboxForTeamCondition";
 import { MemberChip } from "../components/MemberChip";
 import { NumberingTypography } from "../components/NumberingTypography";
+import { TeamCard } from "../components/TeamCard";
 
 const Team: NextPage = () => {
   const suggestTeamNum = (): number[] => {
@@ -90,7 +91,7 @@ const Team: NextPage = () => {
         <NumberingTypography numbering={3} text="チーム分け完了!" />
         <Card>
           <div className="mx-7">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center mb-8">
               <span className="mr-16 text-sm text-slate-800">
                 チーム名をクリックすることでチーム名を変更できます。
               </span>
@@ -102,6 +103,14 @@ const Team: NextPage = () => {
                   クリア
                 </button>
               </div>
+            </div>
+            <div className="flex flex-wrap gap-5 justify-center">
+              <TeamCard text="チーム1" />
+              <TeamCard text="チーム2" />
+              <TeamCard text="チーム3" />
+              <TeamCard text="チーム3" />
+              <TeamCard text="チーム3" />
+              <TeamCard text="チーム3" />
             </div>
           </div>
         </Card>
