@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import { Card } from "../components/Card";
-import { CheckboxForTeamCondition } from "../components/checkboxForTeamCondition";
+import { CheckboxForTeamCondition } from "../components/CheckboxForTeamCondition";
 import { MemberChip } from "../components/MemberChip";
 import { NumberingTypography } from "../components/NumberingTypography";
 import { TeamCard } from "../components/TeamCard";
