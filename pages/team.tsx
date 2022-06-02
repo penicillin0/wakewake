@@ -43,19 +43,6 @@ const Team: NextPage = () => {
               <MemberChip name="佐藤二朗" />
               <MemberChip name="佐藤二朗" />
               <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗佐藤二朗佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
             </div>
           </>
         </Card>
@@ -105,12 +92,56 @@ const Team: NextPage = () => {
               </div>
             </div>
             <div className="flex flex-wrap gap-5 justify-center">
-              <TeamCard text="チーム1" />
-              <TeamCard text="チーム2" />
-              <TeamCard text="チーム3" />
-              <TeamCard text="チーム3" />
-              <TeamCard text="チーム3" />
-              <TeamCard text="チーム3" />
+              <TeamCard
+                text="チーム1"
+                members={[
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                ]}
+              />
+              <TeamCard
+                text="チーム1"
+                members={[
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                ]}
+              />
+              <TeamCard
+                text="チーム1"
+                members={[
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                ]}
+              />
+              <TeamCard
+                text="チーム1"
+                members={[
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                ]}
+              />
+              ,
+              <TeamCard
+                text="チーム1"
+                members={[
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗" },
+                ]}
+              />
             </div>
           </div>
         </Card>
