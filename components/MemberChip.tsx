@@ -10,14 +10,10 @@ export const MemberChip: React.FC<Props> = ({
   hasCloseButton = true,
 }) => {
   return (
-    <div
-      className={`flex items-center py-1 ${
-        hasCloseButton ? "pr-1" : "pr-2"
-      } pl-2 bg-white rounded-md border border-gray-600`}
-    >
+    <div className="flex justify-center items-center px-2 min-w-[7rem] h-8 tracking-wide bg-white rounded-md border border-gray-600">
       <div className="text-base">{name}</div>
       {hasCloseButton && (
-        <div className="ml-2">
+        <div className="ml-1">
           <IoIosCloseCircleOutline className="hover:text-pink-600 active:text-blue-500" />
         </div>
       )}

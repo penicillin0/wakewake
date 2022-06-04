@@ -30,10 +30,10 @@ const Team: NextPage = () => {
             </div>
             <div className="flex flex-wrap gap-3 my-5 mx-16">
               <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
+              <MemberChip name="さと" />
+              <MemberChip name="さとう" />
+              <MemberChip name="さとうじろう" />
+              <MemberChip name="バチ乙女たぎり主" />
               <MemberChip name="佐藤二朗" />
               <MemberChip name="佐藤二朗" />
               <MemberChip name="佐藤二朗" />
@@ -93,7 +93,7 @@ const Team: NextPage = () => {
             </div>
             <div className="flex flex-wrap gap-5 justify-center">
               <TeamCard
-                text="チーム1"
+                teamName="チーム1"
                 members={[
                   { name: "佐藤二朗" },
                   { name: "佐藤二朗" },
@@ -102,7 +102,7 @@ const Team: NextPage = () => {
                 ]}
               />
               <TeamCard
-                text="チーム1"
+                teamName="チーム1"
                 members={[
                   { name: "佐藤二朗" },
                   { name: "佐藤二朗" },
@@ -118,7 +118,7 @@ const Team: NextPage = () => {
                 ]}
               />
               <TeamCard
-                text="チーム1"
+                teamName="チーム1"
                 members={[
                   { name: "佐藤二朗" },
                   { name: "佐藤二朗" },
@@ -126,16 +126,15 @@ const Team: NextPage = () => {
                 ]}
               />
               <TeamCard
-                text="チーム1"
+                teamName="チーム1"
                 members={[
                   { name: "佐藤二朗" },
                   { name: "佐藤二朗" },
                   { name: "佐藤二朗" },
                 ]}
               />
-              ,
               <TeamCard
-                text="チーム1"
+                teamName="チーム1"
                 members={[
                   { name: "佐藤二朗" },
                   { name: "佐藤二朗" },
