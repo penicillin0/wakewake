@@ -1,11 +1,28 @@
+import { doc, getDoc } from "firebase/firestore";
 import { NextPage } from "next";
+import { useEffect } from "react";
 import { Card } from "../components/Card";
 import { CheckboxForTeamCondition } from "../components/CheckboxForTeamCondition";
 import { MemberChip } from "../components/MemberChip";
 import { NumberingTypography } from "../components/NumberingTypography";
 import { TeamCard } from "../components/TeamCard";
+import { db } from "../firebase/init";
 
 const Team: NextPage = () => {
+  useEffect(() => {
+    (async () => {
+      const docRef = doc(
+        db,
+        "rooms",
+        "Ozf3P0b7FPVTYSse8ltE",
+        "options",
+        "tLaI8EaMvtmkiFYxsHfb"
+      );
+      const docSnap = await getDoc(docRef);
+      console.log("Document data:", docSnap.data());
+    })();
+  }, []);
+
   const suggestTeamNum = (): number[] => {
     // TODO: チーム数を提案ロジックを書く
     return [1, 2, 3];
