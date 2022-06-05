@@ -8,6 +8,9 @@ import { NumberingTypography } from "../components/NumberingTypography";
 import { TeamCard } from "../components/TeamCard";
 import { db } from "../firebase/init";
 
+// MEMO: 開発用の仮のルーム、本来はLPからユニークなroomを作成することができる。
+const roomId = "Ozf3P0b7FPVTYSse8ltE";
+
 const Team: NextPage = () => {
   useEffect(() => {
     (async () => {
