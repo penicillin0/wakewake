@@ -1,4 +1,3 @@
-import { doc, getDoc } from "firebase/firestore";
 import { NextPage } from "next";
 import { useEffect } from "react";
 import { Card } from "../components/Card";
@@ -6,7 +5,11 @@ import { CheckboxForTeamCondition } from "../components/CheckboxForTeamCondition
 import { MemberChip } from "../components/MemberChip";
 import { NumberingTypography } from "../components/NumberingTypography";
 import { TeamCard } from "../components/TeamCard";
-import { db } from "../firebase/init";
+import {
+  getRoomDocs,
+  getRoomOptionDocs,
+  getRoomUserDocs,
+} from "../firebase/api";
 
 // MEMO: 開発用の仮のルーム、本来はLPからユニークなroomを作成することができる。
 const roomId = "Ozf3P0b7FPVTYSse8ltE";
@@ -14,15 +17,20 @@ const roomId = "Ozf3P0b7FPVTYSse8ltE";
 const Team: NextPage = () => {
   useEffect(() => {
     (async () => {
-      const docRef = doc(
-        db,
-        "rooms",
-        "Ozf3P0b7FPVTYSse8ltE",
-        "options",
-        "tLaI8EaMvtmkiFYxsHfb"
-      );
-      const docSnap = await getDoc(docRef);
-      console.log("Document data:", docSnap.data());
+      const optionDocs = await getRoomOptionDocs();
+      optionDocs.forEach((doc) => {
+        console.log(doc.data());
+      });
+
+      const userDocs = await getRoomUserDocs();
+      userDocs.forEach((doc) => {
+        console.log(doc.data());
+      });
+
+      const roomDocs = await getRoomDocs();
+      roomDocs.forEach((doc) => {
+        console.log(doc.data());
+      });
     })();
   }, []);
 
