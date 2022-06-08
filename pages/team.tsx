@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "../components/Card";
 import { CheckboxForTeamCondition } from "../components/CheckboxForTeamCondition";
 import { MemberChip } from "../components/MemberChip";
@@ -15,6 +15,16 @@ import {
 const roomId = "Ozf3P0b7FPVTYSse8ltE";
 
 const Team: NextPage = () => {
+  const [newUserName, setNewUserName] = useState("");
+
+  const handleAddMember = () => {
+    console.log("add member", newUserName);
+
+    // TODO: ここでfirestoreにユーザーを追加
+
+    setNewUserName("");
+  };
+
   useEffect(() => {
     (async () => {
       const optionDocs = await getRoomOptionDocs();
@@ -51,8 +61,13 @@ const Team: NextPage = () => {
                 id="username"
                 type="text"
                 placeholder="名前を入力"
+                value={newUserName}
+                onChange={(e) => setNewUserName(e.target.value)}
               ></input>
-              <button className="py-1 px-4 ml-3 text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded">
+              <button
+                className="py-1 px-4 ml-3 text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded"
+                onClick={handleAddMember}
+              >
                 追加
               </button>
             </div>
