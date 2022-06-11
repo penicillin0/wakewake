@@ -5,7 +5,8 @@ import {
   QueryDocumentSnapshot,
 } from "firebase/firestore";
 import { MemberType } from "../types/Member";
-import { OptionType } from "../types/Options";
+import { OptionType } from "../types/Option";
+import { RoomType } from "../types/room";
 import { db } from "./init";
 
 const ROOM_ID = "A738YwZinTQjpss2kL7u";
@@ -20,8 +21,9 @@ export const getRoomMemberDocs = async () => {
     .docs as QueryDocumentSnapshot<MemberType>[];
 };
 
-export const getRoomDocs = () => {
-  return getDocs(collection(db, "rooms"));
+export const getRoomDocs = async () => {
+  return (await getDocs(collection(db, "rooms")))
+    .docs as QueryDocumentSnapshot<RoomType>[];
 };
 
 export const setMember = (name: string, isLeader = false) => {

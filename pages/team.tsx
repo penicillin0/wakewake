@@ -12,7 +12,7 @@ import {
   setMember,
 } from "../firebase/api";
 import { MemberType } from "../types/Member";
-import { OptionType } from "../types/Options";
+import { OptionType } from "../types/Option";
 
 const Team: NextPage = () => {
   const [members, setMembers] = useState<MemberType[]>([]);
