@@ -11,11 +11,29 @@ import {
   getRoomOptionDocs,
   setMember,
 } from "../firebase/api";
+import { MemberType } from "../types/Member";
+import { OptionType } from "../types/Options";
 
 const Team: NextPage = () => {
+  const [members, setMembers] = useState<MemberType[]>([]);
+  const [options, setOptions] = useState<OptionType[]>([]);
   const [newUserName, setNewUserName] = useState("");
 
+  useEffect(() => {
+    (async () => {
+      const membersSnapshot = await getRoomMemberDocs();
+
+      const optionsSnapshot = await getRoomOptionDocs();
+
+      setMembers(membersSnapshot.map((doc) => doc.data()));
+
+      setOptions(optionsSnapshot.map((doc) => doc.data()));
+    })();
+  }, []);
+
   const handleAddMember = async () => {
+    console.log(members);
+    console.log(options);
     if (newUserName === "") return;
 
     await setMember(newUserName);
@@ -135,50 +153,50 @@ const Team: NextPage = () => {
               <TeamCard
                 teamName="チーム1"
                 members={[
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
                 ]}
               />
               <TeamCard
                 teamName="チーム1"
                 members={[
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
                 ]}
               />
               <TeamCard
                 teamName="チーム1"
                 members={[
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
                 ]}
               />
               <TeamCard
                 teamName="チーム1"
                 members={[
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
                 ]}
               />
               <TeamCard
                 teamName="チーム1"
                 members={[
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
-                  { name: "佐藤二朗" },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
+                  { name: "佐藤二朗", isLeader: false },
                 ]}
               />
             </div>
