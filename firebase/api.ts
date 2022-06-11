@@ -1,14 +1,14 @@
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./init";
 
-const ROOM_ID = "Ozf3P0b7FPVTYSse8ltE";
+const ROOM_ID = "A738YwZinTQjpss2kL7u";
 
 export const getRoomOptionDocs = () => {
   return getDocs(collection(db, "rooms", ROOM_ID, "options"));
 };
 
-export const getRoomUserDocs = () => {
-  return getDocs(collection(db, "rooms", ROOM_ID, "users"));
+export const getRoomMemberDocs = () => {
+  return getDocs(collection(db, "rooms", ROOM_ID, "members"));
 };
 
 export const getRoomDocs = () => {

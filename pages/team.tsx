@@ -7,12 +7,9 @@ import { NumberingTypography } from "../components/NumberingTypography";
 import { TeamCard } from "../components/TeamCard";
 import {
   getRoomDocs,
+  getRoomMemberDocs,
   getRoomOptionDocs,
-  getRoomUserDocs,
 } from "../firebase/api";
-
-// MEMO: 開発用の仮のルーム、本来はLPからユニークなroomを作成することができる。
-const roomId = "Ozf3P0b7FPVTYSse8ltE";
 
 const Team: NextPage = () => {
   const [newUserName, setNewUserName] = useState("");
@@ -32,7 +29,7 @@ const Team: NextPage = () => {
         console.log(doc.data());
       });
 
-      const userDocs = await getRoomUserDocs();
+      const userDocs = await getRoomMemberDocs();
       userDocs.forEach((doc) => {
         console.log(doc.data());
       });
