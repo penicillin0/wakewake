@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "./init";
 
 const ROOM_ID = "A738YwZinTQjpss2kL7u";
@@ -13,4 +13,11 @@ export const getRoomMemberDocs = () => {
 
 export const getRoomDocs = () => {
   return getDocs(collection(db, "rooms"));
+};
+
+export const setMember = (name: string, isLeader = false) => {
+  return addDoc(collection(db, "rooms", ROOM_ID, "members"), {
+    name: name,
+    is_leader: isLeader,
+  });
 };

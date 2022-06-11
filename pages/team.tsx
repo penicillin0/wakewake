@@ -9,16 +9,16 @@ import {
   getRoomDocs,
   getRoomMemberDocs,
   getRoomOptionDocs,
+  setMember,
 } from "../firebase/api";
 
 const Team: NextPage = () => {
   const [newUserName, setNewUserName] = useState("");
 
-  const handleAddMember = () => {
-    console.log("add member", newUserName);
+  const handleAddMember = async () => {
+    if (newUserName === "") return;
 
-    // TODO: ここでfirestoreにユーザーを追加
-
+    await setMember(newUserName);
     setNewUserName("");
   };
 
