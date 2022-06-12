@@ -1,3 +1,4 @@
+import React from "react";
 import { MemberType } from "../types/Member";
 import { MemberChip } from "./MemberChip";
 
@@ -6,7 +7,7 @@ type Props = {
   members: MemberType[];
 };
 
-export const TeamCard: React.FC<Props> = ({ teamName, members }) => {
+const OriginTeamCard: React.FC<Props> = ({ teamName, members }) => {
   return (
     <div className="flex -z-0 flex-col p-6 w-56 odd:bg-amber-400/25 even:bg-teal-400/20 shadow-symmetric">
       <div className="mb-3">{teamName}</div>
@@ -24,3 +25,5 @@ export const TeamCard: React.FC<Props> = ({ teamName, members }) => {
     </div>
   );
 };
+
+export const TeamCard = React.memo(OriginTeamCard);

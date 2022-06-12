@@ -1,3 +1,4 @@
+import React from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 type Props = {
@@ -5,10 +6,7 @@ type Props = {
   hasCloseButton?: boolean;
 };
 
-export const MemberChip: React.FC<Props> = ({
-  name,
-  hasCloseButton = true,
-}) => {
+const OriginMemberChip: React.FC<Props> = ({ name, hasCloseButton = true }) => {
   return (
     <div className="flex justify-center items-center px-2 min-w-[7rem] h-8 tracking-wide bg-white rounded-md border border-gray-600">
       <div className="text-base">{name}</div>
@@ -20,3 +18,5 @@ export const MemberChip: React.FC<Props> = ({
     </div>
   );
 };
+
+export const MemberChip = React.memo(OriginMemberChip);

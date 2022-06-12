@@ -1,13 +1,15 @@
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 
 type Props = Required<{
   children: ReactElement;
 }>;
 
-export const Card: React.FC<Props> = ({ children }) => {
+const OriginCard: React.FC<Props> = ({ children }) => {
   return (
     <div className="p-6 my-4 bg-white shadow-symmetric opacity-80">
       {children}
     </div>
   );
 };
+
+export const Card = React.memo(OriginCard);

@@ -1,8 +1,10 @@
+import React from "react";
+
 type Props = {
   labelText: string;
 };
 
-export const CheckboxForTeamCondition: React.FC<Props> = ({ labelText }) => {
+const OriginCheckboxForTeamCondition: React.FC<Props> = ({ labelText }) => {
   return (
     <div className="flex items-center">
       <input
@@ -16,3 +18,7 @@ export const CheckboxForTeamCondition: React.FC<Props> = ({ labelText }) => {
     </div>
   );
 };
+
+export const CheckboxForTeamCondition = React.memo(
+  OriginCheckboxForTeamCondition
+);

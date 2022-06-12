@@ -1,7 +1,8 @@
+import React from "react";
 import { IconContext } from "react-icons";
 import { FaGithub } from "react-icons/fa";
 
-export const Header: React.FC = () => {
+const OriginHeader: React.FC = () => {
   return (
     <div className="flex justify-center w-full h-16 bg-white shadow-md opacity-70">
       <div className="flex flex-row px-2 w-[52rem] h-full">
@@ -18,3 +19,5 @@ export const Header: React.FC = () => {
     </div>
   );
 };
+
+export const Header = React.memo(OriginHeader);
