@@ -5,6 +5,9 @@ import {
 } from "../firebase/api/groupApi";
 import { MemberType } from "../types/Member";
 
+// TODO:
+// [x] groupをリセットして新しいgroupを作成
+// [ ] memberをランダムソートしてgroupに追加
 export const divideMember = async (members: MemberType[], groupNum: number) => {
   await deleteAllGroups();
 
