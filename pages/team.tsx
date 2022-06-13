@@ -5,7 +5,11 @@ import { CheckboxForTeamCondition } from "../components/CheckboxForTeamCondition
 import { MemberChip } from "../components/MemberChip";
 import { NumberingTypography } from "../components/NumberingTypography";
 import { TeamCard } from "../components/TeamCard";
-import { addMember, getRoomMemberDocs } from "../firebase/api/memberApi";
+import {
+  addMember,
+  deleteMember,
+  getRoomMemberDocs,
+} from "../firebase/api/memberApi";
 import { getRoomOptionDocs } from "../firebase/api/optionApi";
 import { MemberType } from "../types/Member";
 import { OptionType } from "../types/Option";
@@ -48,6 +52,11 @@ const Team: NextPage = () => {
     return [1, 2, 3];
   };
 
+  const handleDeleteClick = (member: MemberType) => {
+    deleteMember(member);
+    setMembers(members.filter((m) => m.documentId !== member.documentId));
+  };
+
   return (
     <div className="flex justify-center">
       <div className="w-[52rem] h-[100rem]">
@@ -72,7 +81,11 @@ const Team: NextPage = () => {
             </div>
             <div className="flex flex-wrap gap-3 my-5 mx-16">
               {members.map((member) => (
-                <MemberChip key={member.documentId} name={member.name} />
+                <MemberChip
+                  key={member.documentId}
+                  name={member.name}
+                  handleDeleteClick={() => handleDeleteClick(member)}
+                />
               ))}
             </div>
           </>

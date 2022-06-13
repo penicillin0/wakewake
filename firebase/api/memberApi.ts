@@ -1,5 +1,6 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -51,4 +52,10 @@ export const addMember = async (name: string) => {
     documentId: newMemberRef.id,
     createdAt: newMemberRes.createdAt.toDate(),
   } as MemberType;
+};
+
+export const deleteMember = async (member: MemberType) => {
+  return await deleteDoc(
+    doc(db, "rooms", ROOM_ID, "members", member.documentId)
+  );
 };
