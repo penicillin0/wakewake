@@ -22,7 +22,7 @@ export const divideMember = async (members: MemberType[], groupNum: number) => {
   })) as MemberType[];
 };
 
-// Fisher-Yates Shuffle?
+// Fisher-Yates Shuffle
 function shuffle<T>(array: T[]) {
   for (let i = array.length - 1; 0 < i; --i) {
     const j = Math.floor(Math.random() * i);
