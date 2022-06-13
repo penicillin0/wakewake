@@ -40,25 +40,6 @@ const Team: NextPage = () => {
     setNewUserName("");
   };
 
-  useEffect(() => {
-    (async () => {
-      const optionDocs = await getRoomOptionDocs();
-      optionDocs.forEach((doc) => {
-        console.log(doc.data());
-      });
-
-      const userDocs = await getRoomMemberDocs();
-      userDocs.forEach((doc) => {
-        console.log(doc.data());
-      });
-
-      const roomDocs = await getRoomDocs();
-      roomDocs.forEach((doc) => {
-        console.log(doc.data());
-      });
-    })();
-  }, []);
-
   const suggestTeamNum = (): number[] => {
     // TODO: チーム数を提案ロジックを書く
     return [1, 2, 3];
