@@ -14,6 +14,7 @@ import { getRoomOptionDocs } from "../firebase/api/optionApi";
 import { getRoom } from "../firebase/api/roomApi";
 import { MemberType } from "../types/Member";
 import { OptionType } from "../types/Option";
+import { divideMember } from "../utils/func";
 
 const ROOM_ID = "A738YwZinTQjpss2kL7u";
 
@@ -67,6 +68,9 @@ const Team: NextPage = () => {
 
   const handleDivision = () => {
     console.log("execute");
+    console.log("members", members);
+    console.log("groupNum", groupNum);
+    divideMember(members, groupNum);
   };
 
   useEffect(() => {
