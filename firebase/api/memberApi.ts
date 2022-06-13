@@ -6,18 +6,11 @@ import {
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
-import { MemberType } from "../types/Member";
-import { OptionType } from "../types/Option";
-import { RoomType } from "../types/room";
-import { db } from "./init";
+import { MemberType } from "../../types/Member";
+import { RoomType } from "../../types/Room";
+import { db } from "../init";
 
 const ROOM_ID = "A738YwZinTQjpss2kL7u";
-
-export const getRoomOptionDocs = async () => {
-  return (await getDocs(collection(db, "rooms", ROOM_ID, "options"))).docs.map(
-    (doc) => doc.data()
-  ) as OptionType[];
-};
 
 export const getRoomMemberDocs = async () => {
   const members = (

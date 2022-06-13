@@ -5,11 +5,8 @@ import { CheckboxForTeamCondition } from "../components/CheckboxForTeamCondition
 import { MemberChip } from "../components/MemberChip";
 import { NumberingTypography } from "../components/NumberingTypography";
 import { TeamCard } from "../components/TeamCard";
-import {
-  addMember,
-  getRoomMemberDocs,
-  getRoomOptionDocs,
-} from "../firebase/api";
+import { addMember, getRoomMemberDocs } from "../firebase/api/memberApi";
+import { getRoomOptionDocs } from "../firebase/api/optionApi";
 import { MemberType } from "../types/Member";
 import { OptionType } from "../types/Option";
 
