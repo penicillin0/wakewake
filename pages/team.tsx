@@ -20,12 +20,10 @@ const Team: NextPage = () => {
 
   useEffect(() => {
     (async () => {
-      const results = await Promise.all([
+      const [membersSnapshot, optionsSnapshot] = await Promise.all([
         getRoomMemberDocs(),
         getRoomOptionDocs(),
       ]);
-
-      const [membersSnapshot, optionsSnapshot] = results;
 
       const [members, options] = [
         membersSnapshot.map((doc) => doc.data()),
