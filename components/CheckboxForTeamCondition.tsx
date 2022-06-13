@@ -9,7 +9,7 @@ const OriginCheckboxForTeamCondition: React.FC<Props> = ({ labelText }) => {
     <div className="flex items-center">
       <input
         id={labelText}
-        className="mr-3 w-4 h-4 focus:outline-none"
+        className="mr-2 focus:outline-none"
         type="checkbox"
       ></input>
       <label className="text-base" htmlFor={labelText}>
