@@ -66,11 +66,12 @@ const Team: NextPage = () => {
     setMembers(members.filter((m) => m.documentId !== member.documentId));
   };
 
-  const handleDivision = () => {
+  const handleDivision = async () => {
     console.log("execute");
     console.log("members", members);
     console.log("groupNum", groupNum);
-    divideMember(members, groupNum);
+    const assignedMembers = await divideMember(members, groupNum);
+    console.table(assignedMembers);
   };
 
   useEffect(() => {
