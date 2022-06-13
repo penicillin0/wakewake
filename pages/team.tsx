@@ -9,7 +9,6 @@ import {
   addMember,
   getRoomMemberDocs,
   getRoomOptionDocs,
-  setMember,
 } from "../firebase/api";
 import { MemberType } from "../types/Member";
 import { OptionType } from "../types/Option";
@@ -21,12 +20,17 @@ const Team: NextPage = () => {
 
   useEffect(() => {
     (async () => {
-      const membersSnapshot = await getRoomMemberDocs();
+      const results = await Promise.all([
+        getRoomMemberDocs(),
+        getRoomOptionDocs(),
+      ]);
 
-      const optionsSnapshot = await getRoomOptionDocs();
+      const [membersSnapshot, optionsSnapshot] = results;
+
+      console.table(membersSnapshot.map((doc) => doc.data()));
+      console.table(optionsSnapshot.map((doc) => doc.data()));
 
       setMembers(membersSnapshot.map((doc) => doc.data()));
-
       setOptions(optionsSnapshot.map((doc) => doc.data()));
     })();
   }, []);
