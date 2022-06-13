@@ -3,4 +3,5 @@ export type MemberType = {
   name: string;
   isLeader: boolean;
   createdAt: Date;
+  groupId: string;
 };

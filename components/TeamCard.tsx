@@ -18,6 +18,7 @@ const OriginTeamCard: React.FC<Props> = ({ teamName, members }) => {
               key={index}
               name={member.name}
               hasCloseButton={false}
+              handleDeleteClick={() => {}}
             ></MemberChip>
           );
         })}

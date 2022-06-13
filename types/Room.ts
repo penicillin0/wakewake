@@ -1,5 +1,5 @@
 export type RoomType = {
   createdAt: string;
-  memberPerGroup: number;
+  groupNum: number;
   url: string;
 };

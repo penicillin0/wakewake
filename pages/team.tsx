@@ -11,28 +11,35 @@ import {
   getRoomMemberDocs,
 } from "../firebase/api/memberApi";
 import { getRoomOptionDocs } from "../firebase/api/optionApi";
+import { getRoom } from "../firebase/api/roomApi";
 import { MemberType } from "../types/Member";
 import { OptionType } from "../types/Option";
+
+const ROOM_ID = "A738YwZinTQjpss2kL7u";
 
 const Team: NextPage = () => {
   const [members, setMembers] = useState<MemberType[]>([]);
   const [options, setOptions] = useState<OptionType[]>([]);
+  const [groupNum, setGroupNum] = useState<number>(1);
   const [newUserName, setNewUserName] = useState("");
 
   useEffect(() => {
     (async () => {
       // ページロード時に、ルームの情報を取得する
       // 追加する場合は、以下に追加する
-      const [members, options] = await Promise.all([
+      const [members, options, room] = await Promise.all([
         getRoomMemberDocs(),
         getRoomOptionDocs(),
+        getRoom(ROOM_ID),
       ]);
 
       console.table(members);
       console.table(options);
+      console.table(room);
 
       setMembers(members);
       setOptions(options);
+      setGroupNum(room.groupNum);
     })();
   }, []);
 
@@ -57,6 +64,14 @@ const Team: NextPage = () => {
     deleteMember(member);
     setMembers(members.filter((m) => m.documentId !== member.documentId));
   };
+
+  const handleDivision = () => {
+    console.log("execute");
+  };
+
+  useEffect(() => {
+    console.log(groupNum);
+  }, [groupNum]);
 
   return (
     <div className="flex justify-center">
@@ -99,6 +114,7 @@ const Team: NextPage = () => {
               <select
                 className="block py-2 px-3 text-base text-gray-700 focus:text-gray-700 rounded border border-gray-400 focus:border-blue-600 focus:outline-none"
                 aria-label="Default select example"
+                onChange={(e) => setGroupNum(Number(e.target.value))}
               >
                 <option>メンバー数を選択</option>
                 {suggestGroupNum().map((num) => (
@@ -114,7 +130,10 @@ const Team: NextPage = () => {
               <CheckboxForTeamCondition labelText="チーム名を自動で決定する ( 後から変更できます )" />
             </div>
             <div className="flex justify-center">
-              <button className="py-1 px-4 text-xl  text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md">
+              <button
+                onClick={handleDivision}
+                className="py-1 px-4 text-xl  text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md"
+              >
                 実行する
               </button>
             </div>

@@ -8,7 +8,6 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { MemberType } from "../../types/Member";
-import { RoomType } from "../../types/Room";
 import { db } from "../init";
 
 const ROOM_ID = "A738YwZinTQjpss2kL7u";
@@ -27,17 +26,12 @@ export const getRoomMemberDocs = async () => {
   return members;
 };
 
-export const getRoomDocs = async () => {
-  return (await getDocs(collection(db, "rooms"))).docs.map((doc) =>
-    doc.data()
-  ) as RoomType[];
-};
-
 export const addMember = async (name: string) => {
   const newMember = {
     name,
     isLeader: false,
     createdAt: serverTimestamp(),
+    groupId: "",
   };
 
   const newMemberRef = doc(collection(db, "rooms", ROOM_ID, "members"));
