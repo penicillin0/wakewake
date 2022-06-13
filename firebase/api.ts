@@ -26,9 +26,9 @@ export const getRoomDocs = async () => {
     .docs as QueryDocumentSnapshot<RoomType>[];
 };
 
-export const setMember = (name: string, isLeader = false) => {
+export const addMember = (name: string, isLeader = false) => {
   return addDoc(collection(db, "rooms", ROOM_ID, "members"), {
     name: name,
-    is_leader: isLeader,
+    isLeader: isLeader,
   });
 };

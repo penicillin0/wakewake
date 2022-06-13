@@ -6,7 +6,7 @@ import { MemberChip } from "../components/MemberChip";
 import { NumberingTypography } from "../components/NumberingTypography";
 import { TeamCard } from "../components/TeamCard";
 import {
-  getRoomDocs,
+  addMember,
   getRoomMemberDocs,
   getRoomOptionDocs,
   setMember,
@@ -36,7 +36,7 @@ const Team: NextPage = () => {
     console.log(options);
     if (newUserName === "") return;
 
-    await setMember(newUserName);
+    await addMember(newUserName);
     setNewUserName("");
   };
 
