@@ -27,11 +27,16 @@ const Team: NextPage = () => {
 
       const [membersSnapshot, optionsSnapshot] = results;
 
-      console.table(membersSnapshot.map((doc) => doc.data()));
-      console.table(optionsSnapshot.map((doc) => doc.data()));
+      const [members, options] = [
+        membersSnapshot.map((doc) => doc.data()),
+        optionsSnapshot.map((doc) => doc.data()),
+      ];
 
-      setMembers(membersSnapshot.map((doc) => doc.data()));
-      setOptions(optionsSnapshot.map((doc) => doc.data()));
+      console.table(members);
+      console.table(options);
+
+      setMembers(members);
+      setOptions(options);
     })();
   }, []);
 
