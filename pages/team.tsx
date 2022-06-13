@@ -20,6 +20,7 @@ const Team: NextPage = () => {
 
   useEffect(() => {
     (async () => {
+      // ページロード時に、ルームの情報を取得する
       const [membersSnapshot, optionsSnapshot] = await Promise.all([
         getRoomMemberDocs(),
         getRoomOptionDocs(),
