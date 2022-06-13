@@ -47,9 +47,10 @@ const Team: NextPage = () => {
     setNewUserName("");
   };
 
-  const suggestTeamNum = (): number[] => {
-    // TODO: チーム数を提案ロジックを書く
-    return [1, 2, 3];
+  const suggestGroupNum = () => {
+    const memberNum = members.length;
+
+    return [...Array(memberNum)].map((_, i) => i + 1);
   };
 
   const handleDeleteClick = (member: MemberType) => {
@@ -100,7 +101,7 @@ const Team: NextPage = () => {
                 aria-label="Default select example"
               >
                 <option>メンバー数を選択</option>
-                {suggestTeamNum().map((num) => (
+                {suggestGroupNum().map((num) => (
                   <option key={num} value={num}>
                     {num}
                   </option>
