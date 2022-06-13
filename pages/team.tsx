@@ -22,15 +22,10 @@ const Team: NextPage = () => {
     (async () => {
       // ページロード時に、ルームの情報を取得する
       // 追加する場合は、以下に追加する
-      const [membersSnapshot, optionsSnapshot] = await Promise.all([
+      const [members, options] = await Promise.all([
         getRoomMemberDocs(),
         getRoomOptionDocs(),
       ]);
-
-      const [members, options] = [
-        membersSnapshot.map((doc) => doc.data()),
-        optionsSnapshot.map((doc) => doc.data()),
-      ];
 
       console.table(members);
       console.table(options);
