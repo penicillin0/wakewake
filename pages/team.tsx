@@ -36,11 +36,13 @@ const Team: NextPage = () => {
   }, []);
 
   const handleAddMember = async () => {
-    console.log(members);
-    console.log(options);
     if (newUserName === "") return;
 
-    await addMember(newUserName);
+    const newMember = await addMember(newUserName);
+
+    const newMembers = [...members, newMember];
+
+    setMembers(newMembers);
     setNewUserName("");
   };
 
@@ -72,20 +74,9 @@ const Team: NextPage = () => {
               </button>
             </div>
             <div className="flex flex-wrap gap-3 my-5 mx-16">
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="さと" />
-              <MemberChip name="さとう" />
-              <MemberChip name="さとうじろう" />
-              <MemberChip name="バチ乙女たぎり主" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
-              <MemberChip name="佐藤二朗" />
+              {members.map((member) => (
+                <MemberChip key={member.documentId} name={member.name} />
+              ))}
             </div>
           </>
         </Card>
@@ -135,55 +126,11 @@ const Team: NextPage = () => {
               </div>
             </div>
             <div className="flex flex-wrap gap-5 justify-center">
-              <TeamCard
-                teamName="チーム1"
-                members={[
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                ]}
-              />
-              <TeamCard
-                teamName="チーム1"
-                members={[
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                ]}
-              />
-              <TeamCard
-                teamName="チーム1"
-                members={[
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                ]}
-              />
-              <TeamCard
-                teamName="チーム1"
-                members={[
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                ]}
-              />
-              <TeamCard
-                teamName="チーム1"
-                members={[
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                  { name: "佐藤二朗", isLeader: false },
-                ]}
-              />
+              <TeamCard teamName="チーム1" members={[]} />
+              <TeamCard teamName="チーム1" members={[]} />
+              <TeamCard teamName="チーム1" members={[]} />
+              <TeamCard teamName="チーム1" members={[]} />
+              <TeamCard teamName="チーム1" members={[]} />
             </div>
           </div>
         </Card>
