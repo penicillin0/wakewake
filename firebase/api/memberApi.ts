@@ -53,3 +53,16 @@ export const deleteMember = async (member: MemberType) => {
     doc(db, "rooms", ROOM_ID, "members", member.documentId)
   );
 };
+
+export const updateMember = async (member: MemberType) => {
+  const memberRef = doc(db, "rooms", ROOM_ID, "members", member.documentId);
+
+  const memberData = {
+    name: member.name,
+    isLeader: member.isLeader,
+    groupId: member.groupId,
+    createdAt: member.createdAt,
+  };
+
+  await setDoc(memberRef, memberData);
+};

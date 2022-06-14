@@ -3,6 +3,7 @@ import {
   deleteAllGroups,
   getGroupDocs,
 } from "../firebase/api/groupApi";
+import { updateMember } from "../firebase/api/memberApi";
 import { MemberType } from "../types/Member";
 
 export const divideMember = async (members: MemberType[], groupNum: number) => {
@@ -16,10 +17,20 @@ export const divideMember = async (members: MemberType[], groupNum: number) => {
 
   const shuffledMembers = shuffle(members);
 
-  return shuffledMembers.map((member, i) => ({
+  const assignedMembers = shuffledMembers.map((member, i) => ({
     ...member,
     groupId: groups[i % groups.length].documentId,
   })) as MemberType[];
+
+  Promise.all(assignedMembers.map((member) => updateMember(member)));
+
+  return {
+    dividedMembers: shuffledMembers.map((member, i) => ({
+      ...member,
+      groupId: groups[i % groups.length].documentId,
+    })) as MemberType[],
+    dividedGroups: groups,
+  };
 };
 
 // Fisher-Yates Shuffle

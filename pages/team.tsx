@@ -70,8 +70,10 @@ const Team: NextPage = () => {
     console.log("execute");
     console.log("members", members);
     console.log("groupNum", groupNum);
-    const assignedMembers = await divideMember(members, groupNum);
-    console.table(assignedMembers);
+    const result = await divideMember(members, groupNum);
+    const { dividedMembers, dividedGroups } = result;
+    console.table(dividedMembers);
+    console.table(dividedGroups);
   };
 
   useEffect(() => {
