@@ -121,7 +121,7 @@ const Team: NextPage = () => {
                 aria-label="Default select example"
                 onChange={(e) => setGroupNum(Number(e.target.value))}
               >
-                <option>メンバー数を選択</option>
+                <option>グループ数を選択</option>
                 {suggestGroupNum().map((num) => (
                   <option key={num} value={num}>
                     {num}
