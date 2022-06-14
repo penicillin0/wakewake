@@ -12,7 +12,7 @@ import { db } from "../init";
 
 const ROOM_ID = "A738YwZinTQjpss2kL7u";
 
-export const getRoomMemberDocs = async () => {
+export const getRoomMembers = async () => {
   const members = (
     await getDocs(collection(db, "rooms", ROOM_ID, "members"))
   ).docs.map((doc) => ({

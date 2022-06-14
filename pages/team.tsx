@@ -8,9 +8,9 @@ import { TeamCard } from "../components/TeamCard";
 import {
   addMember,
   deleteMember,
-  getRoomMemberDocs,
+  getRoomMembers,
 } from "../firebase/api/memberApi";
-import { getRoomOptionDocs } from "../firebase/api/optionApi";
+import { getRoomOptions } from "../firebase/api/optionApi";
 import { getRoom } from "../firebase/api/roomApi";
 import { MemberType } from "../types/Member";
 import { OptionType } from "../types/Option";
@@ -29,8 +29,8 @@ const Team: NextPage = () => {
       // ページロード時に、ルームの情報を取得する
       // 追加する場合は、以下に追加する
       const [members, options, room] = await Promise.all([
-        getRoomMemberDocs(),
-        getRoomOptionDocs(),
+        getRoomMembers(),
+        getRoomOptions(),
         getRoom(ROOM_ID),
       ]);
 
