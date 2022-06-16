@@ -12,6 +12,7 @@ import {
 } from "../firebase/api/memberApi";
 import { getRoomOptions } from "../firebase/api/optionApi";
 import { getRoom } from "../firebase/api/roomApi";
+import { GroupType } from "../types/Group";
 import { MemberType } from "../types/Member";
 import { OptionType } from "../types/Option";
 import { divideMember } from "../utils/func";
@@ -23,6 +24,10 @@ const Team: NextPage = () => {
   const [options, setOptions] = useState<OptionType[]>([]);
   const [groupNum, setGroupNum] = useState<number>(1);
   const [newUserName, setNewUserName] = useState("");
+  const [group, setGroup] = useState<GroupType[]>([]);
+  const [groupMember, setGroupMember] = useState<Map<string, MemberType>>(
+    new Map()
+  );
 
   useEffect(() => {
     (async () => {
@@ -74,6 +79,9 @@ const Team: NextPage = () => {
     const { dividedMembers, dividedGroups } = result;
     console.table(dividedMembers);
     console.table(dividedGroups);
+
+    setMembers(dividedMembers);
+    setGroup(dividedGroups);
   };
 
   useEffect(() => {
@@ -146,31 +154,44 @@ const Team: NextPage = () => {
             </div>
           </div>
         </Card>
-        <NumberingTypography numbering={3} text="チーム分け完了!" />
-        <Card>
-          <div className="mx-7">
-            <div className="flex justify-between items-center mb-8">
-              <span className="mr-16 text-sm text-slate-800">
-                チーム名をクリックすることでチーム名を変更できます。
-              </span>
-              <div>
-                <button className="py-1 px-2 mr-4 text-base text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md">
-                  再実行
-                </button>
-                <button className="py-1 px-2 text-base  text-white bg-rose-500 hover:bg-rose-600 active:bg-rose-700 rounded-md">
-                  クリア
-                </button>
+        {group.length !== 0 && (
+          <div>
+            <NumberingTypography numbering={3} text="チーム分け完了!" />
+            <Card>
+              <div className="mx-7">
+                <div className="flex justify-between items-center mb-8">
+                  <span className="mr-16 text-sm text-slate-800">
+                    チーム名をクリックすることでチーム名を変更できます。
+                  </span>
+                  <div>
+                    <button className="py-1 px-2 mr-4 text-base text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md">
+                      再実行
+                    </button>
+                    <button className="py-1 px-2 text-base  text-white bg-rose-500 hover:bg-rose-600 active:bg-rose-700 rounded-md">
+                      クリア
+                    </button>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-5 justify-center">
+                  {group.map((g) => {
+                    const groupName = g.name;
+                    const groupMember = members.filter(
+                      (m) => m.groupId === g.documentId
+                    );
+
+                    return (
+                      <TeamCard
+                        key={g.documentId}
+                        teamName={groupName}
+                        members={groupMember}
+                      />
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-            <div className="flex flex-wrap gap-5 justify-center">
-              <TeamCard teamName="チーム1" members={[]} />
-              <TeamCard teamName="チーム1" members={[]} />
-              <TeamCard teamName="チーム1" members={[]} />
-              <TeamCard teamName="チーム1" members={[]} />
-              <TeamCard teamName="チーム1" members={[]} />
-            </div>
+            </Card>
           </div>
-        </Card>
+        )}
       </div>
     </div>
   );
