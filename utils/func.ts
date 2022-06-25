@@ -1,36 +1,27 @@
-import {
-  addGroup,
-  deleteAllGroups,
-  getGroupDocs,
-} from "../firebase/api/groupApi";
-import { updateMember } from "../firebase/api/memberApi";
 import { MemberType } from "../types/Member";
 
-export const divideMember = async (members: MemberType[], groupNum: number) => {
-  await deleteAllGroups();
-
-  await Promise.all(
-    [...Array(groupNum)].map((_, i) => addGroup(`チーム${i + 1}`))
-  );
-
-  const groups = await getGroupDocs();
-
+export const divideMember = (members: MemberType[], groupNum: number) => {
   const shuffledMembers = shuffle(members);
+  const groupMembers = new Map<number, number[]>();
+  shuffledMembers.map((m) => {
+    const groupKey = m.id % groupNum;
+    if (!groupMembers.has(groupKey)) {
+      groupMembers.set(groupKey, [m.id]);
+    } else {
+      const oldValue = groupMembers.get(groupKey) ?? [];
+      groupMembers.set(groupKey, [...oldValue, m.id]);
+    }
+  });
 
-  const assignedMembers = shuffledMembers.map((member, i) => ({
-    ...member,
-    groupId: groups[i % groups.length].documentId,
-  })) as MemberType[];
+  // make group
+  const groups = [...Array(groupNum)].map((_, i) => ({
+    id: i,
+    name: `group${i}`,
+  }));
 
-  Promise.all(assignedMembers.map((member) => updateMember(member)));
+  console.log(groupMembers);
 
-  return {
-    dividedMembers: shuffledMembers.map((member, i) => ({
-      ...member,
-      groupId: groups[i % groups.length].documentId,
-    })) as MemberType[],
-    dividedGroups: groups,
-  };
+  return { groupMembers, groups };
 };
 
 // Fisher-Yates Shuffle

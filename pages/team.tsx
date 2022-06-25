@@ -1,92 +1,86 @@
+import { useLocalStorage } from "@mantine/hooks";
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
+import superjson from "superjson";
 import { Card } from "../components/Card";
 import { CheckboxForTeamCondition } from "../components/CheckboxForTeamCondition";
 import { MemberChip } from "../components/MemberChip";
 import { NumberingTypography } from "../components/NumberingTypography";
 import { TeamCard } from "../components/TeamCard";
-import {
-  addMember,
-  deleteMember,
-  getRoomMembers,
-} from "../firebase/api/memberApi";
-import { getRoomOptions } from "../firebase/api/optionApi";
-import { getRoom } from "../firebase/api/roomApi";
 import { GroupType } from "../types/Group";
 import { MemberType } from "../types/Member";
-import { OptionType } from "../types/Option";
 import { divideMember } from "../utils/func";
 
-const ROOM_ID = "A738YwZinTQjpss2kL7u";
-
 const Team: NextPage = () => {
-  const [members, setMembers] = useState<MemberType[]>([]);
-  const [options, setOptions] = useState<OptionType[]>([]);
-  const [groupNum, setGroupNum] = useState<number>(1);
-  const [newUserName, setNewUserName] = useState("");
-  const [group, setGroup] = useState<GroupType[]>([]);
-  const [groupMember, setGroupMember] = useState<Map<string, MemberType>>(
-    new Map()
-  );
-
-  useEffect(() => {
-    (async () => {
-      // ページロード時に、ルームの情報を取得する
-      // 追加する場合は、以下に追加する
-      const [members, options, room] = await Promise.all([
-        getRoomMembers(),
-        getRoomOptions(),
-        getRoom(ROOM_ID),
-      ]);
-
-      console.table(members);
-      console.table(options);
-      console.table(room);
-
-      setMembers(members);
-      setOptions(options);
-      setGroupNum(room.groupNum);
-    })();
-  }, []);
+  const [groupNum, setGroupNum] = useLocalStorage<number>({
+    key: "groupNum",
+    defaultValue: 1,
+    getInitialValueInEffect: true,
+  });
+  const [groupMember, setGroupMember] = useLocalStorage<Map<number, number[]>>({
+    key: "groupMember",
+    defaultValue: new Map(),
+    getInitialValueInEffect: true,
+    serialize: superjson.stringify,
+    deserialize: superjson.parse,
+  });
+  const [newUserName, setNewUserName] = useLocalStorage({
+    key: "newUserName",
+    defaultValue: "",
+    getInitialValueInEffect: true,
+  });
+  const [members, setMembers] = useLocalStorage<MemberType[]>({
+    key: "members",
+    defaultValue: [],
+    getInitialValueInEffect: true,
+  });
+  const [roomName, setRoomName] = useLocalStorage<string>({
+    key: "roomName",
+    defaultValue: "",
+    getInitialValueInEffect: true,
+  });
+  const [groups, setGroups] = useLocalStorage<GroupType[]>({
+    key: "groups",
+    defaultValue: [],
+    getInitialValueInEffect: true,
+  });
 
   const handleAddMember = async () => {
-    if (newUserName === "") return;
+    if (!newUserName) return;
 
-    const newMember = await addMember(newUserName);
+    const newMember = {
+      name: newUserName,
+      id: members?.length ? Math.max(...members.map((m) => m.id)) + 1 : 1,
+    };
 
-    const newMembers = [...members, newMember];
+    if (members) {
+      setMembers([...members, newMember]);
+    } else {
+      setMembers([newMember]);
+    }
 
-    setMembers(newMembers);
     setNewUserName("");
   };
 
   const suggestGroupNum = () => {
-    const memberNum = members.length;
+    const memberNum = members ? members.length : 0;
 
     return [...Array(memberNum)].map((_, i) => i + 1);
   };
 
-  const handleDeleteClick = (member: MemberType) => {
-    deleteMember(member);
-    setMembers(members.filter((m) => m.documentId !== member.documentId));
+  const handleDeleteClick = (clickedMember: MemberType) => {
+    if (!members) return;
+    setMembers(members.filter((m) => m.id !== clickedMember.id));
   };
 
   const handleDivision = async () => {
-    console.log("execute");
-    console.log("members", members);
-    console.log("groupNum", groupNum);
-    const result = await divideMember(members, groupNum);
-    const { dividedMembers, dividedGroups } = result;
-    console.table(dividedMembers);
-    console.table(dividedGroups);
+    if (!members || !groupNum) return;
 
-    setMembers(dividedMembers);
-    setGroup(dividedGroups);
+    const result = divideMember(members, groupNum);
+    console.log(result.groupMembers);
+
+    setGroupMember(result.groupMembers);
+    setGroups(result.groups);
   };
-
-  useEffect(() => {
-    console.log(groupNum);
-  }, [groupNum]);
 
   return (
     <div className="flex justify-center">
@@ -111,9 +105,9 @@ const Team: NextPage = () => {
               </button>
             </div>
             <div className="flex flex-wrap gap-3 my-5 mx-16">
-              {members.map((member) => (
+              {members?.map((member) => (
                 <MemberChip
-                  key={member.documentId}
+                  key={member.id}
                   name={member.name}
                   handleDeleteClick={() => handleDeleteClick(member)}
                 />
@@ -129,6 +123,7 @@ const Team: NextPage = () => {
               <select
                 className="block py-2 px-3 text-base text-gray-700 focus:text-gray-700 rounded border border-gray-400 focus:border-blue-600 focus:outline-none"
                 aria-label="Default select example"
+                defaultValue={groupNum}
                 onChange={(e) => setGroupNum(Number(e.target.value))}
               >
                 <option>グループ数を選択</option>
@@ -154,7 +149,7 @@ const Team: NextPage = () => {
             </div>
           </div>
         </Card>
-        {group.length !== 0 && (
+        {groupMember !== undefined && (
           <div>
             <NumberingTypography numbering={3} text="チーム分け完了!" />
             <Card>
@@ -173,17 +168,24 @@ const Team: NextPage = () => {
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-5 justify-center">
-                  {group.map((g) => {
-                    const groupName = g.name;
-                    const groupMember = members.filter(
-                      (m) => m.groupId === g.documentId
+                  {groups.map((group) => {
+                    const groupName = group.name;
+                    const groupId = group.id;
+                    console.log("groupMember", groupMember);
+
+                    if (!(groupMember instanceof Map)) {
+                      return;
+                    }
+                    const memberIds = groupMember.get(groupId) ?? [];
+                    const groupMembers = members.filter((m) =>
+                      memberIds.includes(m.id)
                     );
 
                     return (
                       <TeamCard
-                        key={g.documentId}
+                        key={group.id}
                         teamName={groupName}
-                        members={groupMember}
+                        members={groupMembers}
                       />
                     );
                   })}

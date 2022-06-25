@@ -1,7 +1,4 @@
 export type MemberType = {
-  documentId: string;
+  id: number;
   name: string;
-  isLeader: boolean;
-  createdAt: Date;
-  groupId: string;
 };
