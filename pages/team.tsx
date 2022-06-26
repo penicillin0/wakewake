@@ -134,6 +134,25 @@ const Team: NextPage = () => {
   return (
     <div className="flex justify-center">
       <div className="mb-10 w-[52rem]">
+        <div>
+          <div className="mt-8 border-l-4 border-gray-500 border-solid">
+            <h1 className="ml-2 text-xl">使い方</h1>
+          </div>
+          <ul className="py-2 pl-8 ml-1 text-base list-disc ">
+            <li className="mb-2  text-gray-600">
+              チーム分け対象のメンバーを追加してください。
+            </li>
+            <li className="mb-2 text-gray-600">
+              チーム分けの方法と分ける数を指定してください。
+            </li>
+            <li className="mb-2 text-gray-600">
+              実行ボタンでチーム分けを実行してください。
+            </li>
+            <li className="mb-2 text-gray-600">
+              チーム分けの結果は指定した方法(CSV・PDF・PNG)で保存が可能です。
+            </li>
+          </ul>
+        </div>
         <NumberingTypography numbering={1} text="メンバーを登録しましょう！" />
         <Card>
           <>
