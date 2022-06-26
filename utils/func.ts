@@ -3,8 +3,8 @@ import { MemberType } from "../types/Member";
 export const divideMember = (members: MemberType[], groupNum: number) => {
   const shuffledMembers = shuffle(members);
   const groupMembers = new Map<number, number[]>();
-  shuffledMembers.map((m) => {
-    const groupKey = m.id % groupNum;
+  shuffledMembers.map((m, index) => {
+    const groupKey = index % groupNum;
     if (!groupMembers.has(groupKey)) {
       groupMembers.set(groupKey, [m.id]);
     } else {
@@ -16,10 +16,8 @@ export const divideMember = (members: MemberType[], groupNum: number) => {
   // make group
   const groups = [...Array(groupNum)].map((_, i) => ({
     id: i,
-    name: `group${i}`,
+    name: `Group${i + 1}`,
   }));
-
-  console.log(groupMembers);
 
   return { groupMembers, groups };
 };
