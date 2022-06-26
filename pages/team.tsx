@@ -51,19 +51,16 @@ const Team: NextPage = () => {
       name: newUserName,
       id: members?.length ? Math.max(...members.map((m) => m.id)) + 1 : 1,
     };
-
     if (members) {
       setMembers([...members, newMember]);
     } else {
       setMembers([newMember]);
     }
-
     setNewUserName("");
   };
 
   const suggestGroupNum = () => {
     const memberNum = members ? members.length : 0;
-
     return [...Array(memberNum)].map((_, i) => i + 1);
   };
 
@@ -80,6 +77,11 @@ const Team: NextPage = () => {
 
     setGroupMember(result.groupMembers);
     setGroups(result.groups);
+  };
+
+  const handleDivideClear = () => {
+    setGroupMember(new Map());
+    setGroups([]);
   };
 
   return (
@@ -159,10 +161,16 @@ const Team: NextPage = () => {
                     チーム名をクリックすることでチーム名を変更できます。
                   </span>
                   <div>
-                    <button className="py-1 px-2 mr-4 text-base text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md">
+                    <button
+                      onClick={handleDivision}
+                      className="py-1 px-2 mr-4 text-base text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md"
+                    >
                       再実行
                     </button>
-                    <button className="py-1 px-2 text-base  text-white bg-rose-500 hover:bg-rose-600 active:bg-rose-700 rounded-md">
+                    <button
+                      onClick={handleDivideClear}
+                      className="py-1 px-2 text-base  text-white bg-rose-500 hover:bg-rose-600 active:bg-rose-700 rounded-md"
+                    >
                       クリア
                     </button>
                   </div>
@@ -171,7 +179,6 @@ const Team: NextPage = () => {
                   {groups.map((group) => {
                     const groupName = group.name;
                     const groupId = group.id;
-                    console.log("groupMember", groupMember);
 
                     if (!(groupMember instanceof Map)) {
                       return;
