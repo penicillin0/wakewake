@@ -73,8 +73,6 @@ const Team: NextPage = () => {
     if (!members || !groupNum) return;
 
     const result = divideMember(members, groupNum);
-    console.log(result.groupMembers);
-
     setGroupMember(result.groupMembers);
     setGroups(result.groups);
   };
