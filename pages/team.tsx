@@ -98,6 +98,11 @@ const Team: NextPage = () => {
   const handleDivision = async () => {
     if (!members || !divideNum) return;
 
+    if (members.length === 0) {
+      alert("メンバーを追加してください");
+      return;
+    }
+
     const result = divideMember(members, divideNum, divideMethod);
 
     setGroupMember(result.groupMembers);
