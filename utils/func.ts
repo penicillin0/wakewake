@@ -1,15 +1,21 @@
-import { DivideByType } from "../pages/team";
+import { DivideBy, DivideByType } from "../pages/team";
 import { MemberType } from "../types/Member";
 
 export const divideMember = (
   members: MemberType[],
-  settingNum: number,
+  divideNum: number,
   divideMethod: DivideByType
 ) => {
   const shuffledMembers = shuffle([...members]);
   const groupMembers = new Map<number, number[]>();
+
+  const groupNum =
+    divideMethod === DivideBy.GROUP
+      ? divideNum
+      : Math.ceil(members.length / divideNum);
+
   shuffledMembers.map((m, index) => {
-    const groupKey = index % settingNum;
+    const groupKey = index % groupNum;
     if (!groupMembers.has(groupKey)) {
       groupMembers.set(groupKey, [m.id]);
     } else {
@@ -19,7 +25,7 @@ export const divideMember = (
   });
 
   // make group
-  const groups = [...Array(settingNum)].map((_, i) => ({
+  const groups = [...Array(groupNum)].map((_, i) => ({
     id: i,
     name: `Group${i + 1}`,
   }));

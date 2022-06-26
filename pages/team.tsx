@@ -9,7 +9,7 @@ import { GroupType } from "../types/Group";
 import { MemberType } from "../types/Member";
 import { divideMember } from "../utils/func";
 
-const DivideBy = {
+export const DivideBy = {
   MEMBER: "member",
   GROUP: "group",
 } as const;
@@ -19,7 +19,7 @@ export type DivideByType = typeof DivideBy[keyof typeof DivideBy];
 const Team: NextPage = () => {
   const [divideMethod, setDivideMethod] = useLocalStorage<DivideByType>({
     key: "divideMethod",
-    defaultValue: DivideBy.MEMBER,
+    defaultValue: DivideBy.GROUP,
     getInitialValueInEffect: true,
   });
 
@@ -33,7 +33,7 @@ const Team: NextPage = () => {
     defaultValue: new Map(),
     getInitialValueInEffect: true,
     serialize: superjson.stringify,
-    deserialize: superjson.parse,
+    deserialize: (str) => (str ? superjson.parse(str) : new Map()),
   });
   const [newUserName, setNewUserName] = useLocalStorage({
     key: "newUserName",
@@ -136,12 +136,12 @@ const Team: NextPage = () => {
                 <input
                   type="radio"
                   name="howDivide"
-                  checked={divideMethod === DivideBy.MEMBER}
-                  id="byMemberNum"
-                  onChange={() => setDivideMethod(DivideBy.MEMBER)}
+                  checked={divideMethod === DivideBy.GROUP}
+                  id="byGroupNum"
+                  onChange={() => setDivideMethod(DivideBy.GROUP)}
                   className="mr-2 w-4 h-4 bg-white checked:bg-blue-600 border border-gray-300 checked:border-blue-600 focus:outline-none"
                 />
-                <label className=" text-gray-800 " htmlFor="byMemberNum">
+                <label className=" text-gray-800 " htmlFor="byGroupNum">
                   チーム数
                 </label>
               </div>
@@ -149,12 +149,12 @@ const Team: NextPage = () => {
                 <input
                   type="radio"
                   name="howDivide"
-                  id="byGroupNum"
-                  checked={divideMethod === DivideBy.GROUP}
-                  onChange={() => setDivideMethod(DivideBy.GROUP)}
+                  id="byMemberNum"
+                  checked={divideMethod === DivideBy.MEMBER}
+                  onChange={() => setDivideMethod(DivideBy.MEMBER)}
                   className="mr-2 w-4 h-4 bg-white checked:bg-blue-600 border border-gray-300 checked:border-blue-600 focus:outline-none"
                 />
-                <label className=" text-gray-800 " htmlFor="byGroupNum">
+                <label className=" text-gray-800 " htmlFor="byMemberNum">
                   チームごとのメンバー数
                 </label>
               </div>
