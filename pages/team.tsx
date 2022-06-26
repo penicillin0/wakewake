@@ -2,7 +2,6 @@ import { useLocalStorage } from "@mantine/hooks";
 import { NextPage } from "next";
 import superjson from "superjson";
 import { Card } from "../components/Card";
-import { CheckboxForTeamCondition } from "../components/CheckboxForTeamCondition";
 import { MemberChip } from "../components/MemberChip";
 import { NumberingTypography } from "../components/NumberingTypography";
 import { TeamCard } from "../components/TeamCard";
@@ -10,9 +9,22 @@ import { GroupType } from "../types/Group";
 import { MemberType } from "../types/Member";
 import { divideMember } from "../utils/func";
 
+const DivideBy = {
+  MEMBER: "member",
+  GROUP: "group",
+} as const;
+
+export type DivideByType = typeof DivideBy[keyof typeof DivideBy];
+
 const Team: NextPage = () => {
-  const [groupNum, setGroupNum] = useLocalStorage<number>({
-    key: "groupNum",
+  const [divideMethod, setDivideMethod] = useLocalStorage<DivideByType>({
+    key: "divideMethod",
+    defaultValue: DivideBy.MEMBER,
+    getInitialValueInEffect: true,
+  });
+
+  const [divideNum, setDivideNum] = useLocalStorage<number>({
+    key: "divideNum",
     defaultValue: 1,
     getInitialValueInEffect: true,
   });
@@ -59,7 +71,7 @@ const Team: NextPage = () => {
     setNewUserName("");
   };
 
-  const suggestGroupNum = () => {
+  const suggestSettingNum = () => {
     const memberNum = members ? members.length : 0;
     return [...Array(memberNum)].map((_, i) => i + 1);
   };
@@ -70,9 +82,10 @@ const Team: NextPage = () => {
   };
 
   const handleDivision = async () => {
-    if (!members || !groupNum) return;
+    if (!members || !divideNum) return;
 
-    const result = divideMember(members, groupNum);
+    const result = divideMember(members, divideNum, divideMethod);
+
     setGroupMember(result.groupMembers);
     setGroups(result.groups);
   };
@@ -118,26 +131,48 @@ const Team: NextPage = () => {
         <NumberingTypography numbering={2} text="どうチーム分けしますか？" />
         <Card>
           <div className="mx-40">
-            <div className="flex items-center mb-6">
-              <div className="pr-[10%] text-xl text-teal-600">グループ数</div>
+            <div className="flex flex-col gap-y-1 mb-3">
+              <div className="flex items-center">
+                <input
+                  type="radio"
+                  name="howDivide"
+                  checked={divideMethod === DivideBy.MEMBER}
+                  id="byMemberNum"
+                  onChange={() => setDivideMethod(DivideBy.MEMBER)}
+                  className="mr-2 w-4 h-4 bg-white checked:bg-blue-600 border border-gray-300 checked:border-blue-600 focus:outline-none"
+                />
+                <label className=" text-gray-800 " htmlFor="byMemberNum">
+                  チーム数
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  type="radio"
+                  name="howDivide"
+                  id="byGroupNum"
+                  checked={divideMethod === DivideBy.GROUP}
+                  onChange={() => setDivideMethod(DivideBy.GROUP)}
+                  className="mr-2 w-4 h-4 bg-white checked:bg-blue-600 border border-gray-300 checked:border-blue-600 focus:outline-none"
+                />
+                <label className=" text-gray-800 " htmlFor="byGroupNum">
+                  チームごとのメンバー数
+                </label>
+              </div>
+            </div>
+            <div className="flex justify-center mb-3">
               <select
-                className="block py-2 px-3 text-base text-gray-700 focus:text-gray-700 rounded border border-gray-400 focus:border-blue-600 focus:outline-none"
+                className="py-2 px-3 w-4/5 text-base text-gray-700 focus:text-gray-700 rounded border border-gray-400 focus:border-blue-600 focus:outline-none"
                 aria-label="Default select example"
-                defaultValue={groupNum}
-                onChange={(e) => setGroupNum(Number(e.target.value))}
+                value={divideNum}
+                onChange={(e) => setDivideNum(Number(e.target.value))}
               >
                 <option>グループ数を選択</option>
-                {suggestGroupNum().map((num) => (
+                {suggestSettingNum().map((num) => (
                   <option key={num} value={num}>
                     {num}
                   </option>
                 ))}
               </select>
-            </div>
-            <div className="flex flex-col mb-6 space-y-2">
-              <CheckboxForTeamCondition labelText="超過したメンバーを別グループにする" />
-              <CheckboxForTeamCondition labelText="チームリーダーをランダムで決定する ( 後から変更できます )" />
-              <CheckboxForTeamCondition labelText="チーム名を自動で決定する ( 後から変更できます )" />
             </div>
             <div className="flex justify-center">
               <button

@@ -1,9 +1,15 @@
+import { DivideByType } from "../pages/team";
 import { MemberType } from "../types/Member";
 
+export const divideMember = (
+  members: MemberType[],
+  settingNum: number,
+  divideMethod: DivideByType
+) => {
   const shuffledMembers = shuffle([...members]);
   const groupMembers = new Map<number, number[]>();
   shuffledMembers.map((m, index) => {
-    const groupKey = index % groupNum;
+    const groupKey = index % settingNum;
     if (!groupMembers.has(groupKey)) {
       groupMembers.set(groupKey, [m.id]);
     } else {
@@ -13,7 +19,7 @@ import { MemberType } from "../types/Member";
   });
 
   // make group
-  const groups = [...Array(groupNum)].map((_, i) => ({
+  const groups = [...Array(settingNum)].map((_, i) => ({
     id: i,
     name: `Group${i + 1}`,
   }));
