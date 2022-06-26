@@ -95,6 +95,10 @@ const Team: NextPage = () => {
     setGroups([]);
   };
 
+  const handleMemberClear = () => {
+    setMembers([]);
+  };
+
   return (
     <div className="flex justify-center">
       <div className="w-[52rem] h-[100rem]">
@@ -125,6 +129,14 @@ const Team: NextPage = () => {
                   handleDeleteClick={() => handleDeleteClick(member)}
                 />
               ))}
+            </div>
+            <div className="flex justify-end">
+              <button
+                onClick={handleMemberClear}
+                className="py-1 px-2 text-base  text-white bg-rose-500 hover:bg-rose-600 active:bg-rose-700 rounded-md"
+              >
+                クリア
+              </button>
             </div>
           </>
         </Card>
