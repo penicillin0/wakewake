@@ -1,5 +1,6 @@
 import { useLocalStorage } from "@mantine/hooks";
 import { NextPage } from "next";
+import { useState } from "react";
 import superjson from "superjson";
 import { Card } from "../components/Card";
 import { MemberChip } from "../components/MemberChip";
@@ -17,6 +18,8 @@ export const DivideBy = {
 export type DivideByType = typeof DivideBy[keyof typeof DivideBy];
 
 const Team: NextPage = () => {
+  const [memberInputTyping, setMemberInputTyping] = useState(false);
+
   const [divideMethod, setDivideMethod] = useLocalStorage<DivideByType>({
     key: "divideMethod",
     defaultValue: DivideBy.GROUP,
@@ -99,6 +102,14 @@ const Team: NextPage = () => {
     setMembers([]);
   };
 
+  const handleMemberInputKeyPress = (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (e.key === "Enter" && !memberInputTyping) {
+      handleAddMember();
+    }
+  };
+
   return (
     <div className="flex justify-center">
       <div className="w-[52rem] h-[100rem]">
@@ -113,6 +124,9 @@ const Team: NextPage = () => {
                 placeholder="名前を入力"
                 value={newUserName}
                 onChange={(e) => setNewUserName(e.target.value)}
+                onCompositionStart={() => setMemberInputTyping(true)}
+                onCompositionEnd={() => setMemberInputTyping(false)}
+                onKeyDown={handleMemberInputKeyPress}
               ></input>
               <button
                 className="py-1 px-4 ml-3 text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded"
