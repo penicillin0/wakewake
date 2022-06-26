@@ -60,7 +60,18 @@ const Team: NextPage = () => {
   });
 
   const handleAddMember = async () => {
-    if (!newUserName) return;
+    // 空白スタート
+    const spaceStartReg = new RegExp(/^\s+/);
+
+    if (!newUserName) {
+      alert("名前を入力してください");
+      return;
+    }
+
+    if (spaceStartReg.test(newUserName)) {
+      alert("名前はスペースで開始できません");
+      return;
+    }
 
     const newMember = {
       name: newUserName,
@@ -99,6 +110,11 @@ const Team: NextPage = () => {
   };
 
   const handleMemberClear = () => {
+    if (members.length === 0) {
+      alert("メンバーが存在しません");
+      return;
+    }
+
     setMembers([]);
   };
 
