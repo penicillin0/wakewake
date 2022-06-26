@@ -132,7 +132,7 @@ const Team: NextPage = () => {
         <NumberingTypography numbering={1} text="メンバーを登録しましょう！" />
         <Card>
           <>
-            <div className="flex justify-center py-2">
+            <div className="flex justify-center items-center py-2">
               <input
                 className="p-[0.5rem] text-gray-700 rounded border border-slate-400"
                 id="username"
@@ -151,6 +151,7 @@ const Team: NextPage = () => {
                 追加
               </button>
             </div>
+
             <div className="flex flex-wrap gap-3 my-5 mx-16">
               {members?.map((member) => (
                 <MemberChip
@@ -160,7 +161,10 @@ const Team: NextPage = () => {
                 />
               ))}
             </div>
-            <div className="flex justify-end">
+            <div className="flex justify-end items-center">
+              <span className="mr-3 text-base text-slate-700">
+                現在のメンバー数 {members.length} 人
+              </span>
               <button
                 onClick={handleMemberClear}
                 className="py-1 px-2 text-base  text-white bg-rose-500 hover:bg-rose-600 active:bg-rose-700 rounded-md"
