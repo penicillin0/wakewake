@@ -1,7 +1,6 @@
 import { MemberType } from "../types/Member";
 
-export const divideMember = (members: MemberType[], groupNum: number) => {
-  const shuffledMembers = shuffle(members);
+  const shuffledMembers = shuffle([...members]);
   const groupMembers = new Map<number, number[]>();
   shuffledMembers.map((m, index) => {
     const groupKey = index % groupNum;
