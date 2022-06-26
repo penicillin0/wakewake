@@ -128,7 +128,7 @@ const Team: NextPage = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="w-[52rem] h-[100rem]">
+      <div className="mb-10 w-[52rem]">
         <NumberingTypography numbering={1} text="メンバーを登録しましょう！" />
         <Card>
           <>
@@ -232,7 +232,7 @@ const Team: NextPage = () => {
         </Card>
         {groupMember !== undefined && (
           <div>
-            <NumberingTypography numbering={3} text="チーム分け完了!" />
+            <NumberingTypography numbering={3} text="チーム分け結果" />
             <Card>
               <div className="mx-7">
                 <div className="flex justify-between items-center mb-8">

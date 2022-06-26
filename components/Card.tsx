@@ -6,7 +6,7 @@ type Props = Required<{
 
 const OriginCard: React.FC<Props> = ({ children }) => {
   return (
-    <div className="p-6 my-4 bg-white shadow-symmetric opacity-80">
+    <div className="p-5 my-4 bg-white shadow-symmetric opacity-80">
       {children}
     </div>
   );
