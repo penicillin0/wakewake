@@ -212,7 +212,11 @@ const Team: NextPage = () => {
                 value={divideNum}
                 onChange={(e) => setDivideNum(Number(e.target.value))}
               >
-                <option>グループ数を選択</option>
+                <option>
+                  {divideMethod === DivideBy.MEMBER
+                    ? "メンバー数を選択"
+                    : " チーム数を選択"}
+                </option>
                 {suggestSettingNum().map((num) => (
                   <option key={num} value={num}>
                     {num}
