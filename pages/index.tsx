@@ -1,10 +1,7 @@
-import { FirebaseApp, getApp } from "firebase/app";
 import type { NextPage } from "next";
 import Head from "next/head";
-import "../firebase/init"; // Initialize FirebaseApp
 
 const Home: NextPage = () => {
-  const app: FirebaseApp = getApp();
   return (
     <div>
       <Head>

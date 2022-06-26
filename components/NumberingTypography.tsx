@@ -7,7 +7,7 @@ type Props = {
 
 const OriginNumberingTypography: React.FC<Props> = (props) => {
   return (
-    <div className="p-1 mt-9 text-lg text-gray-900">
+    <div className="p-1 mt-7 text-lg text-gray-900">
       {props.numbering}. &nbsp;{props.text}
     </div>
   );
