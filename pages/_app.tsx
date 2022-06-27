@@ -1,9 +1,11 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { Layout } from "../components/Layout";
+import { usePageView } from "../hooks/usePageView";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  usePageView();
   return (
     <>
       <Head>
