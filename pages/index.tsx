@@ -134,7 +134,7 @@ const Home: NextPage = () => {
     }
   };
 
-  const handleSave = async (extension: "png" | "jpeg") => {
+  const handleImageSave = async (extension: "png" | "jpeg") => {
     if (!saveDomElement.current) return;
 
     const saveOption = {
@@ -151,6 +151,7 @@ const Home: NextPage = () => {
     link.download = `team_result_${getYYYYMMDD(new Date())}.${extension}`;
     link.href = dataUrl;
     link.click();
+    link.remove();
   };
 
   return (
@@ -330,13 +331,13 @@ const Home: NextPage = () => {
                 </div>
                 <div>
                   <button
-                    onClick={() => handleSave("png")}
+                    onClick={() => handleImageSave("png")}
                     className="py-1 px-2 mr-4 text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
                   >
                     PNGで保存
                   </button>
                   <button
-                    onClick={() => handleSave("jpeg")}
+                    onClick={() => handleImageSave("jpeg")}
                     className="py-1 px-2 mr-4 text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
                   >
                     JPEGで保存
