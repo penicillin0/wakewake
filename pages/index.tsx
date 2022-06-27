@@ -323,7 +323,7 @@ const Home: NextPage = () => {
               <div className="mx-5">
                 <div className="flex justify-between items-center mb-4">
                   <span className="mr-16 text-sm text-slate-800">
-                    チーム名をクリックすることでチーム名を変更できます。
+                    結果は下部のボタンからダウンロードできます。
                   </span>
                   <div>
                     <button
