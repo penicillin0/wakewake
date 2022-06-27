@@ -43,3 +43,11 @@ function shuffle<T>(array: T[]) {
   }
   return array;
 }
+
+export const getYYYYMMDD = (now: Date) => {
+  let yyyy = now.getFullYear();
+  let mm = ("00" + (now.getMonth() + 1)).slice(-2);
+  let dd = ("00" + now.getDate()).slice(-2);
+  const ymd = String(yyyy) + String(mm) + String(dd);
+  return ymd;
+};

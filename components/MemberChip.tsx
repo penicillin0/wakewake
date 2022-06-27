@@ -13,8 +13,8 @@ const OriginMemberChip: React.FC<Props> = ({
   handleDeleteClick,
 }) => {
   return (
-    <div className="flex justify-center items-center px-2 min-w-[7rem] h-8 tracking-wide bg-white rounded-md border border-gray-600">
-      <div className="text-base">{name}</div>
+    <div className="flex justify-center items-center px-1 min-w-[7rem] h-8 tracking-wide bg-white rounded-md border border-gray-600">
+      <div className="inline-block text-base align-middle">{name}</div>
       {hasCloseButton && (
         <div className="ml-1">
           <IoIosCloseCircleOutline

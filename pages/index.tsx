@@ -1,6 +1,7 @@
 import { useLocalStorage } from "@mantine/hooks";
+import * as htmlToImage from "html-to-image";
 import { NextPage } from "next";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import superjson from "superjson";
 import { Card } from "../components/Card";
 import { MemberChip } from "../components/MemberChip";
@@ -8,7 +9,7 @@ import { NumberingTypography } from "../components/NumberingTypography";
 import { TeamCard } from "../components/TeamCard";
 import { GroupType } from "../types/Group";
 import { MemberType } from "../types/Member";
-import { divideMember } from "../utils/func";
+import { divideMember, getYYYYMMDD } from "../utils/func";
 
 export const DivideBy = {
   MEMBER: "member",
@@ -18,6 +19,8 @@ export const DivideBy = {
 export type DivideByType = typeof DivideBy[keyof typeof DivideBy];
 
 const Home: NextPage = () => {
+  const saveDomElement = useRef<HTMLDivElement>(null);
+
   const [memberInputTyping, setMemberInputTyping] = useState(false);
 
   const [divideMethod, setDivideMethod] = useLocalStorage<DivideByType>({
@@ -131,8 +134,27 @@ const Home: NextPage = () => {
     }
   };
 
+  const handleSave = async (extension: "png" | "jpeg") => {
+    if (!saveDomElement.current) return;
+
+    const saveOption = {
+      backgroundColor: "#fff",
+      height: saveDomElement.current.offsetHeight * 1.2,
+    };
+
+    const dataUrl =
+      extension === "png"
+        ? await htmlToImage.toPng(saveDomElement.current, saveOption)
+        : await htmlToImage.toJpeg(saveDomElement.current, saveOption);
+
+    const link = document.createElement("a");
+    link.download = `team_result_${getYYYYMMDD(new Date())}.${extension}`;
+    link.href = dataUrl;
+    link.click();
+  };
+
   return (
-    <div className="flex justify-center h-[90vh]">
+    <div className="flex justify-center h-[90vh]" id="capture">
       <div className="my-8 w-[52rem]">
         <div>
           <div className="mt-8 border-l-4 border-gray-500 border-solid">
@@ -262,8 +284,8 @@ const Home: NextPage = () => {
           <div>
             <NumberingTypography numbering={3} text="チーム分け結果" />
             <Card>
-              <div className="mx-7">
-                <div className="flex justify-between items-center mb-8">
+              <div className="mx-5">
+                <div className="flex justify-between items-center mb-4">
                   <span className="mr-16 text-sm text-slate-800">
                     チーム名をクリックすることでチーム名を変更できます。
                   </span>
@@ -282,27 +304,43 @@ const Home: NextPage = () => {
                     </button>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-5 justify-center">
-                  {groups.map((group) => {
-                    const groupName = group.name;
-                    const groupId = group.id;
+                <div id="saveDomElement" ref={saveDomElement} className="my-3">
+                  <div className="flex flex-wrap gap-5 justify-center m-4">
+                    {groups.map((group) => {
+                      const groupName = group.name;
+                      const groupId = group.id;
 
-                    if (!(groupMember instanceof Map)) {
-                      return;
-                    }
-                    const memberIds = groupMember.get(groupId) ?? [];
-                    const groupMembers = members.filter((m) =>
-                      memberIds.includes(m.id)
-                    );
+                      if (!(groupMember instanceof Map)) {
+                        return;
+                      }
+                      const memberIds = groupMember.get(groupId) ?? [];
+                      const groupMembers = members.filter((m) =>
+                        memberIds.includes(m.id)
+                      );
 
-                    return (
-                      <TeamCard
-                        key={group.id}
-                        teamName={groupName}
-                        members={groupMembers}
-                      />
-                    );
-                  })}
+                      return (
+                        <TeamCard
+                          key={group.id}
+                          teamName={groupName}
+                          members={groupMembers}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+                <div>
+                  <button
+                    onClick={() => handleSave("png")}
+                    className="py-1 px-2 mr-4 text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
+                  >
+                    PNGで保存
+                  </button>
+                  <button
+                    onClick={() => handleSave("jpeg")}
+                    className="py-1 px-2 mr-4 text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
+                  >
+                    JPEGで保存
+                  </button>
                 </div>
               </div>
             </Card>
