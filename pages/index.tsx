@@ -207,7 +207,7 @@ const Home: NextPage = () => {
               実行ボタンでチーム分けを実行してください。
             </li>
             <li className="mb-2 text-gray-600">
-              チーム分けの結果は指定した方法(CSV・PDF・PNG)で保存が可能です。
+              チーム分けの結果は指定した方法（PNG・JPEG・CSV・Excel）で保存できます。
             </li>
           </ul>
         </div>
