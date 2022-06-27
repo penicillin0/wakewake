@@ -7,6 +7,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
+        <meta
+          name="google-site-verification"
+          content="7Ghxx-EskqMs_Kj71i1-f-u0-p92v-SEodaYYx1Njyo"
+        />
         <title>
           チーム分けツール - wakewake 簡単にチーム分けができるツール
         </title>
