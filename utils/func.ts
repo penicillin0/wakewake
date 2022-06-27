@@ -1,4 +1,4 @@
-import { DivideBy, DivideByType } from "../pages/team";
+import { DivideBy, DivideByType } from "../pages/index";
 import { MemberType } from "../types/Member";
 
 export const divideMember = (

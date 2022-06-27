@@ -11,7 +11,7 @@ const OriginHeader: React.FC = () => {
     <div className="flex justify-center w-full h-16 bg-white shadow-md opacity-70">
       <div className="flex flex-row px-2 w-[52rem] h-full">
         <div className="flex basis-3/4 items-center">
-          <Link href="/team" className="cursor-pointer">
+          <Link href="/" className="cursor-pointer">
             <Image
               src="/logo.svg"
               width={LOGO_SIZE}
