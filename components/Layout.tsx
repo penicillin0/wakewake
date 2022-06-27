@@ -14,10 +14,12 @@ const OriginLayout: React.FC<LayoutProps> = ({ children }) => {
         <div className="absolute top-[22rem] left-[-10rem] w-[140vw] h-[4vw] bg-slate-300 opacity-50 rotate-[330deg]"></div>
         <div className="absolute top-[20rem] right-[-10%] w-2/5 h-[40vw] rounded-full border-3vw border-teal-400 opacity-25"></div>
       </div>
-      <Header />
+      <div className="flex flex-col min-h-[100vh]">
+        <Header />
 
-      {children}
-      <Footer />
+        {children}
+        <Footer />
+      </div>
     </div>
   );
 };
