@@ -22,7 +22,7 @@ const OriginHeader: React.FC = () => {
         <div className="flex basis-1/4 justify-end items-center">
           <a href="https://github.com/penicillin0/wakewake">
             <IconContext.Provider value={{ color: "#111", size: "2.5rem" }}>
-              <FaGithub />
+              <FaGithub title="Github Link" />
             </IconContext.Provider>
           </a>
         </div>
