@@ -1,4 +1,5 @@
 import { useLocalStorage } from "@mantine/hooks";
+import ExcelJS from "exceljs";
 import * as htmlToImage from "html-to-image";
 import { NextPage } from "next";
 import { useRef, useState } from "react";
@@ -154,6 +155,40 @@ const Home: NextPage = () => {
     link.remove();
   };
 
+  const handleCsvOrExcelSave = async (extension: "csv" | "xlsx") => {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet("sheet1");
+
+    if (extension === "xlsx") {
+      worksheet.addRow(["Group名", "人数"]);
+    }
+
+    groups.map((group) => {
+      const groupName = group.name;
+      const memberNum = groupMember.get(group.id)?.length || 0;
+      const memberNames =
+        groupMember
+          .get(group.id)
+          ?.map(
+            (memberId) => members?.find((m) => m.id === memberId)?.name || ""
+          ) || [];
+
+      worksheet.addRow([groupName, memberNum, ...memberNames]);
+    });
+
+    const uint8Array =
+      extension === "xlsx"
+        ? await workbook.xlsx.writeBuffer()
+        : await workbook.csv.writeBuffer();
+    const blob = new Blob([uint8Array], { type: "application/octet-binary" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `team_result_${getYYYYMMDD(new Date())}.${extension}`;
+    a.click();
+    a.remove();
+  };
+
   return (
     <div className="flex justify-center h-[90vh]" id="capture">
       <div className="my-8 w-[52rem]">
@@ -305,7 +340,7 @@ const Home: NextPage = () => {
                     </button>
                   </div>
                 </div>
-                <div id="saveDomElement" ref={saveDomElement} className="my-3">
+                <div id="saveDomElement" ref={saveDomElement} className="my-10">
                   <div className="flex flex-wrap gap-5 justify-center m-4">
                     {groups.map((group) => {
                       const groupName = group.name;
@@ -329,18 +364,30 @@ const Home: NextPage = () => {
                     })}
                   </div>
                 </div>
-                <div>
+                <div className="flex gap-x-4 justify-end">
                   <button
                     onClick={() => handleImageSave("png")}
-                    className="py-1 px-2 mr-4 text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
+                    className="py-1 px-2 text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
                   >
                     PNGで保存
                   </button>
                   <button
                     onClick={() => handleImageSave("jpeg")}
-                    className="py-1 px-2 mr-4 text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
+                    className="py-1 px-2 text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
                   >
                     JPEGで保存
+                  </button>
+                  <button
+                    onClick={() => handleCsvOrExcelSave("csv")}
+                    className="py-1 px-2 text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
+                  >
+                    CSVで保存
+                  </button>
+                  <button
+                    onClick={() => handleCsvOrExcelSave("xlsx")}
+                    className="py-1 px-2 text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
+                  >
+                    XLSXで保存
                   </button>
                 </div>
               </div>
