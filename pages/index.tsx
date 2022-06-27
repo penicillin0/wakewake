@@ -140,7 +140,7 @@ const Home: NextPage = () => {
 
     const saveOption = {
       backgroundColor: "#fff",
-      height: saveDomElement.current.offsetHeight * 1.2,
+      height: saveDomElement.current.offsetHeight * 1.3,
     };
 
     const dataUrl =
@@ -190,7 +190,7 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className="flex justify-center h-[90vh]" id="capture">
+    <div className="flex justify-center" id="capture">
       <div className="my-8 w-[52rem]">
         <div>
           <div className="mt-8 border-l-4 border-gray-500 border-solid">
