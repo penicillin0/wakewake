@@ -191,7 +191,7 @@ const Home: NextPage = () => {
 
   return (
     <div className="flex justify-center" id="capture">
-      <div className="my-8 w-[52rem]">
+      <div className="my-8 w-[20rem] sm:w-[32rem] md:w-[40rem] lg:w-[52rem]">
         <div>
           <div className="mt-8 border-l-4 border-gray-500 border-solid">
             <h1 className="ml-2 text-xl">使い方</h1>
@@ -258,7 +258,7 @@ const Home: NextPage = () => {
         </Card>
         <NumberingTypography numbering={2} text="どうチーム分けしますか？" />
         <Card>
-          <div className="mx-40">
+          <div className="mx-8">
             <div className="flex flex-col gap-y-1 mb-3">
               <div className="flex items-center">
                 <input
@@ -320,28 +320,28 @@ const Home: NextPage = () => {
           <div>
             <NumberingTypography numbering={3} text="チーム分け結果" />
             <Card>
-              <div className="mx-5">
+              <div className="mx-3">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="mr-16 text-sm text-slate-800">
+                  <span className="text-sm text-slate-800">
                     結果は下部のボタンからダウンロードできます。
                   </span>
-                  <div>
+                  <div className="flex flex-col gap-2 sm:flex-row">
                     <button
                       onClick={handleDivision}
-                      className="py-1 px-2 mr-4 text-base text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md"
+                      className="py-1 px-2 text-base text-white whitespace-nowrap bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md"
                     >
                       再実行
                     </button>
                     <button
                       onClick={handleDivideClear}
-                      className="py-1 px-2 text-base  text-white bg-rose-500 hover:bg-rose-600 active:bg-rose-700 rounded-md"
+                      className="py-1 px-2 text-base  text-white whitespace-nowrap bg-rose-500 hover:bg-rose-600 active:bg-rose-700 rounded-md"
                     >
                       クリア
                     </button>
                   </div>
                 </div>
                 <div id="saveDomElement" ref={saveDomElement} className="my-10">
-                  <div className="flex flex-wrap gap-5 justify-center m-4">
+                  <div className="flex flex-wrap gap-5 justify-center">
                     {groups.map((group) => {
                       const groupName = group.name;
                       const groupId = group.id;
