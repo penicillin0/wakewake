@@ -8,7 +8,7 @@ const LOGO_SIZE = "48";
 const OriginHeader: React.FC = () => {
   return (
     <div className="flex justify-center w-full h-[64px] bg-white shadow-md opacity-70">
-      <div className="flex flex-row px-2 w-[20rem] h-full sm:w-[32rem] md:w-[40rem] lg:w-[52rem]">
+      <div className="flex flex-row px-2 w-full h-full sm:w-[32rem] md:w-[40rem] lg:w-[52rem]">
         <div className="flex basis-3/4 items-center">
           <Image
             src="/logo.svg"

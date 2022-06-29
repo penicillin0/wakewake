@@ -190,7 +190,7 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className="flex justify-center" id="capture">
+    <div className="flex justify-center">
       <div className="my-8 w-[20rem] sm:w-[32rem] md:w-[40rem] lg:w-[52rem]">
         <div>
           <div className="mt-8 border-l-4 border-gray-500 border-solid">
