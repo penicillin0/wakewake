@@ -7,6 +7,7 @@ import superjson from "superjson";
 import { Card } from "../components/Card";
 import { MemberChip } from "../components/MemberChip";
 import { NumberingTypography } from "../components/NumberingTypography";
+import { SaveResultButton } from "../components/SaveResultButton";
 import { TeamCard } from "../components/TeamCard";
 import { GroupType } from "../types/Group";
 import { MemberType } from "../types/Member";
@@ -190,8 +191,11 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className="flex justify-center" id="capture">
-      <div className="my-[28px] w-[320px] sm:w-[512px] md:w-[640px] lg:w-[832px]">
+    <div
+      className="text:[12px] flex justify-center sm:text-[16px]"
+      id="capture"
+    >
+      <div className="my-[28px] w-[340px] sm:w-[560px] md:w-[640px] lg:w-[832px]">
         <div>
           <div className="mt-[32px] border-l-[4px] border-gray-500 border-solid">
             <h1 className="ml-[8px] text-xl">使い方</h1>
@@ -227,7 +231,7 @@ const Home: NextPage = () => {
                 onKeyDown={handleMemberInputKeyPress}
               ></input>
               <button
-                className="py-[4px] px-[16px] ml-[12px] text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded"
+                className="py-[8px] px-[16px] ml-[12px] h-full text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded"
                 onClick={handleAddMember}
               >
                 追加
@@ -325,7 +329,7 @@ const Home: NextPage = () => {
                   <span className="text-sm text-slate-800">
                     結果は下部のボタンからダウンロードできます。
                   </span>
-                  <div className="flex flex-col gap-2 sm:flex-row">
+                  <div className="flex flex-col gap-[8px] ml-[4px] sm:flex-row">
                     <button
                       onClick={handleDivision}
                       className="py-[4px] px-[8px] text-base text-white whitespace-nowrap bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md"
@@ -364,31 +368,23 @@ const Home: NextPage = () => {
                     })}
                   </div>
                 </div>
-                <div className="flex gap-x-[16px] justify-end">
-                  <button
+                <div className="flex gap-x-[10px] justify-end sm:gap-x-[14px]">
+                  <SaveResultButton
                     onClick={() => handleImageSave("png")}
-                    className="py-[4px] px-[8px] text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
-                  >
-                    PNGで保存
-                  </button>
-                  <button
+                    text="PNGで保存"
+                  />
+                  <SaveResultButton
                     onClick={() => handleImageSave("jpeg")}
-                    className="py-[4px] px-[8px] text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
-                  >
-                    JPEGで保存
-                  </button>
-                  <button
+                    text="JPEGで保存"
+                  />
+                  <SaveResultButton
                     onClick={() => handleCsvOrExcelSave("csv")}
-                    className="py-[4px] px-[8px] text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
-                  >
-                    CSVで保存
-                  </button>
-                  <button
+                    text="CSVで保存"
+                  />
+                  <SaveResultButton
                     onClick={() => handleCsvOrExcelSave("xlsx")}
-                    className="py-[4px] px-[8px] text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
-                  >
-                    XLSXで保存
-                  </button>
+                    text="XLSXで保存"
+                  />
                 </div>
               </div>
             </Card>
