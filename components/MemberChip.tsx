@@ -13,10 +13,10 @@ const OriginMemberChip: React.FC<Props> = ({
   handleDeleteClick,
 }) => {
   return (
-    <div className="flex justify-center items-center px-1 min-w-[7rem] h-8 tracking-wide bg-white rounded-md border border-gray-600">
+    <div className="flex justify-center items-center px-[4px] min-w-[7rem] h-[32px] tracking-wide bg-white rounded-md border border-gray-600">
       <div className="inline-block text-base align-middle">{name}</div>
       {hasCloseButton && (
-        <div className="ml-1">
+        <div className="ml-[4px]">
           <IoIosCloseCircleOutline
             className="hover:text-pink-600 active:text-blue-500"
             onClick={handleDeleteClick}

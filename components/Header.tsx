@@ -18,7 +18,7 @@ const OriginHeader: React.FC = () => {
             alt="wakewake home"
             className="ml-[4px]"
           />
-          <span className="ml-3 text-3xl text-gray-800">wakewake</span>
+          <span className="ml-[12px] text-3xl text-gray-800">wakewake</span>
         </div>
         <div className="flex basis-1/4 gap-x-[4px] justify-end items-center">
           <a href="https://github.com/penicillin0/wakewake">
