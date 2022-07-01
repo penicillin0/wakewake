@@ -232,7 +232,7 @@ const Home: NextPage = () => {
               </button>
             </div>
 
-            <div className="flex flex-wrap gap-[12px] my-[20px] mx-[64px]">
+            <div className="flex flex-wrap gap-[12px] m-[20px]">
               {members?.map((member) => (
                 <MemberChip
                   key={member.id}
