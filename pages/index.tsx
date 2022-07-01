@@ -191,7 +191,7 @@ const Home: NextPage = () => {
 
   return (
     <div className="flex justify-center" id="capture">
-      <div className="my-8 w-[20rem] sm:w-[32rem] md:w-[40rem] lg:w-[52rem]">
+      <div className="my-[28px] w-[320px] sm:w-[512px] md:w-[640px] lg:w-[832px]">
         <div>
           <div className="mt-8 border-l-4 border-gray-500 border-solid">
             <h1 className="ml-2 text-xl">使い方</h1>
