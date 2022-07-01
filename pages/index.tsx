@@ -193,20 +193,20 @@ const Home: NextPage = () => {
     <div className="flex justify-center" id="capture">
       <div className="my-[28px] w-[320px] sm:w-[512px] md:w-[640px] lg:w-[832px]">
         <div>
-          <div className="mt-8 border-l-4 border-gray-500 border-solid">
-            <h1 className="ml-2 text-xl">使い方</h1>
+          <div className="mt-[32px] border-l-[4px] border-gray-500 border-solid">
+            <h1 className="ml-[8px] text-xl">使い方</h1>
           </div>
-          <ul className="py-2 pl-8 ml-1 text-base list-disc ">
-            <li className="mb-2  text-gray-600">
+          <ul className="py-[8px] pl-[32px] ml-[4px] text-base list-disc ">
+            <li className="mb-[8px]  text-gray-600">
               チーム分け対象のメンバーを追加してください。
             </li>
-            <li className="mb-2 text-gray-600">
+            <li className="mb-[8px] text-gray-600">
               チーム分けの方法と分ける数を指定してください。
             </li>
-            <li className="mb-2 text-gray-600">
+            <li className="mb-[8px] text-gray-600">
               実行ボタンでチーム分けを実行してください。
             </li>
-            <li className="mb-2 text-gray-600">
+            <li className="mb-[8px] text-gray-600">
               チーム分けの結果は指定した方法（PNG・JPEG・CSV・Excel）で保存できます。
             </li>
           </ul>
@@ -216,7 +216,7 @@ const Home: NextPage = () => {
           <>
             <div className="flex justify-center items-center py-2">
               <input
-                className="p-[0.5rem] text-gray-700 rounded border border-slate-400"
+                className="p-[8px] text-gray-700 rounded border border-slate-400"
                 id="username"
                 type="text"
                 placeholder="名前を入力"
@@ -227,14 +227,14 @@ const Home: NextPage = () => {
                 onKeyDown={handleMemberInputKeyPress}
               ></input>
               <button
-                className="py-1 px-4 ml-3 text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded"
+                className="py-[4px] px-[16px] ml-[12px] text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded"
                 onClick={handleAddMember}
               >
                 追加
               </button>
             </div>
 
-            <div className="flex flex-wrap gap-3 my-5 mx-16">
+            <div className="flex flex-wrap gap-[12px] my-[20px] mx-[64px]">
               {members?.map((member) => (
                 <MemberChip
                   key={member.id}
@@ -244,12 +244,12 @@ const Home: NextPage = () => {
               ))}
             </div>
             <div className="flex justify-end items-center">
-              <span className="mr-3 text-base text-slate-700">
+              <span className="mr-[12px] text-base text-slate-700">
                 現在のメンバー数 {members.length} 人
               </span>
               <button
                 onClick={handleMemberClear}
-                className="py-1 px-2 text-base  text-white bg-rose-500 hover:bg-rose-600 active:bg-rose-700 rounded-md"
+                className="py-[4px] px-[8px] text-base  text-white bg-rose-500 hover:bg-rose-600 active:bg-rose-700 rounded-md"
               >
                 クリア
               </button>
@@ -258,8 +258,8 @@ const Home: NextPage = () => {
         </Card>
         <NumberingTypography numbering={2} text="どうチーム分けしますか？" />
         <Card>
-          <div className="mx-8">
-            <div className="flex flex-col gap-y-1 mb-3">
+          <div className="mx-[32px]">
+            <div className="flex flex-col gap-y-[4px] mb-[12px]">
               <div className="flex items-center">
                 <input
                   type="radio"
@@ -267,7 +267,7 @@ const Home: NextPage = () => {
                   checked={divideMethod === DivideBy.GROUP}
                   id="byGroupNum"
                   onChange={() => setDivideMethod(DivideBy.GROUP)}
-                  className="mr-2 w-4 h-4 bg-white checked:bg-blue-600 border border-gray-300 checked:border-blue-600 focus:outline-none"
+                  className="mr-[8px] w-[16px] h-[16px] bg-white checked:bg-blue-600 border border-gray-300 checked:border-blue-600 focus:outline-none"
                 />
                 <label className=" text-gray-800 " htmlFor="byGroupNum">
                   チーム数
@@ -280,7 +280,7 @@ const Home: NextPage = () => {
                   id="byMemberNum"
                   checked={divideMethod === DivideBy.MEMBER}
                   onChange={() => setDivideMethod(DivideBy.MEMBER)}
-                  className="mr-2 w-4 h-4 bg-white checked:bg-blue-600 border border-gray-300 checked:border-blue-600 focus:outline-none"
+                  className="mr-[8px] w-[16px] h-[16px] bg-white checked:bg-blue-600 border border-gray-300 checked:border-blue-600 focus:outline-none"
                 />
                 <label className=" text-gray-800 " htmlFor="byMemberNum">
                   チームごとのメンバー数
@@ -289,7 +289,7 @@ const Home: NextPage = () => {
             </div>
             <div className="flex justify-center mb-3">
               <select
-                className="py-2 px-3 w-4/5 text-base text-gray-700 focus:text-gray-700 rounded border border-gray-400 focus:border-blue-600 focus:outline-none"
+                className="py-[8px] px-[12px] w-4/5 text-base text-gray-700 focus:text-gray-700 rounded border border-gray-400 focus:border-blue-600 focus:outline-none"
                 aria-label="Default select example"
                 value={divideNum}
                 onChange={(e) => setDivideNum(Number(e.target.value))}
@@ -309,7 +309,7 @@ const Home: NextPage = () => {
             <div className="flex justify-center">
               <button
                 onClick={handleDivision}
-                className="py-1 px-4 text-xl  text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md"
+                className="py-[4px] px-[16px] text-xl  text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md"
               >
                 実行する
               </button>
@@ -320,28 +320,28 @@ const Home: NextPage = () => {
           <div>
             <NumberingTypography numbering={3} text="チーム分け結果" />
             <Card>
-              <div className="mx-3">
-                <div className="flex justify-between items-center mb-4">
+              <div className="mx-[12px]">
+                <div className="flex justify-between items-center mb-[16px]">
                   <span className="text-sm text-slate-800">
                     結果は下部のボタンからダウンロードできます。
                   </span>
                   <div className="flex flex-col gap-2 sm:flex-row">
                     <button
                       onClick={handleDivision}
-                      className="py-1 px-2 text-base text-white whitespace-nowrap bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md"
+                      className="py-[4px] px-[8px] text-base text-white whitespace-nowrap bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md"
                     >
                       再実行
                     </button>
                     <button
                       onClick={handleDivideClear}
-                      className="py-1 px-2 text-base  text-white whitespace-nowrap bg-rose-500 hover:bg-rose-600 active:bg-rose-700 rounded-md"
+                      className="py-[4px] px-[8px] text-base  text-white whitespace-nowrap bg-rose-500 hover:bg-rose-600 active:bg-rose-700 rounded-md"
                     >
                       クリア
                     </button>
                   </div>
                 </div>
                 <div id="saveDomElement" ref={saveDomElement} className="my-10">
-                  <div className="flex flex-wrap gap-5 justify-center">
+                  <div className="flex flex-wrap gap-[20px] justify-center">
                     {groups.map((group) => {
                       const groupName = group.name;
                       const groupId = group.id;
@@ -364,28 +364,28 @@ const Home: NextPage = () => {
                     })}
                   </div>
                 </div>
-                <div className="flex gap-x-4 justify-end">
+                <div className="flex gap-x-[16px] justify-end">
                   <button
                     onClick={() => handleImageSave("png")}
-                    className="py-1 px-2 text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
+                    className="py-[4px] px-[8px] text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
                   >
                     PNGで保存
                   </button>
                   <button
                     onClick={() => handleImageSave("jpeg")}
-                    className="py-1 px-2 text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
+                    className="py-[4px] px-[8px] text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
                   >
                     JPEGで保存
                   </button>
                   <button
                     onClick={() => handleCsvOrExcelSave("csv")}
-                    className="py-1 px-2 text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
+                    className="py-[4px] px-[8px] text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
                   >
                     CSVで保存
                   </button>
                   <button
                     onClick={() => handleCsvOrExcelSave("xlsx")}
-                    className="py-1 px-2 text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
+                    className="py-[4px] px-[8px] text-base text-white bg-gray-500 hover:bg-gray-600 active:bg-gray-700 rounded-md"
                   >
                     XLSXで保存
                   </button>
