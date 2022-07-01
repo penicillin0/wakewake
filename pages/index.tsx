@@ -195,22 +195,16 @@ const Home: NextPage = () => {
       className="text:[12px] flex justify-center sm:text-[16px]"
       id="capture"
     >
-      <div className="my-[28px] w-[340px] sm:w-[560px] md:w-[640px] lg:w-[832px]">
+      <div className="my-[40px] w-[340px] sm:w-[560px] md:w-[640px] lg:w-[832px]">
         <div>
-          <div className="mt-[32px] border-l-[4px] border-gray-500 border-solid">
+          <div className="border-l-[4px] border-gray-500 border-solid">
             <h1 className="ml-[8px] text-xl">使い方</h1>
           </div>
-          <ul className="py-[8px] pl-[32px] ml-[4px] text-base list-disc ">
-            <li className="mb-[8px]  text-gray-600">
-              チーム分け対象のメンバーを追加してください。
-            </li>
-            <li className="mb-[8px] text-gray-600">
-              チーム分けの方法と分ける数を指定してください。
-            </li>
-            <li className="mb-[8px] text-gray-600">
-              実行ボタンでチーム分けを実行してください。
-            </li>
-            <li className="mb-[8px] text-gray-600">
+          <ul className="flex flex-col gap-y-[8px] py-[8px] pl-[32px] ml-[4px] text-base list-disc text-gray-600 ">
+            <li>チーム分け対象のメンバーを追加してください。</li>
+            <li>チーム分けの方法と分ける数を指定してください。</li>
+            <li>実行ボタンでチーム分けを実行してください。</li>
+            <li>
               チーム分けの結果は指定した方法（PNG・JPEG・CSV・Excel）で保存できます。
             </li>
           </ul>
