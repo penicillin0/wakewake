@@ -195,12 +195,20 @@ const Home: NextPage = () => {
       className="text:[12px] flex justify-center sm:text-[16px]"
       id="capture"
     >
-      <div className="my-[40px] w-[340px] sm:w-[560px] md:w-[640px] lg:w-[832px]">
+      <div className="flex flex-col gap-y-[24px] my-[32px] w-[340px] sm:w-[560px] md:w-[640px] lg:w-[832px]">
+        <div>
+          <h1 className="mb-[4px] text-[24px] font-bold text-gray-700">
+            簡単チーム分けツール
+          </h1>
+          <h2 className="text-gray-600">
+            ランダムにチーム分けをし、結果を保存することができます！
+          </h2>
+        </div>
         <div>
           <div className="border-l-[4px] border-gray-500 border-solid">
-            <h1 className="ml-[8px] text-xl">使い方</h1>
+            <p className="ml-[8px] text-[21px]">使い方</p>
           </div>
-          <ul className="flex flex-col gap-y-[8px] py-[8px] pl-[32px] ml-[4px] text-base list-disc text-gray-600 ">
+          <ul className="flex flex-col gap-y-[8px] py-[8px] pl-[32px] ml-[4px] text-base list-disc text-gray-600">
             <li>チーム分け対象のメンバーを追加してください。</li>
             <li>チーム分けの方法と分ける数を指定してください。</li>
             <li>実行ボタンでチーム分けを実行してください。</li>
@@ -209,111 +217,118 @@ const Home: NextPage = () => {
             </li>
           </ul>
         </div>
-        <NumberingTypography numbering={1} text="メンバーを登録しましょう！" />
-        <Card>
-          <>
-            <div className="flex justify-center items-center py-2">
-              <input
-                className="p-[8px] text-gray-700 rounded border border-slate-400"
-                id="username"
-                type="text"
-                placeholder="名前を入力"
-                value={newUserName}
-                onChange={(e) => setNewUserName(e.target.value)}
-                onCompositionStart={() => setMemberInputTyping(true)}
-                onCompositionEnd={() => setMemberInputTyping(false)}
-                onKeyDown={handleMemberInputKeyPress}
-              ></input>
-              <button
-                className="py-[8px] px-[16px] ml-[12px] h-full text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded"
-                onClick={handleAddMember}
-              >
-                追加
-              </button>
-            </div>
+        <div>
+          <NumberingTypography
+            numbering={1}
+            text="メンバーを登録しましょう！"
+          />
+          <Card>
+            <>
+              <div className="flex justify-center items-center py-2">
+                <input
+                  className="p-[8px] text-gray-700 rounded border border-slate-400"
+                  id="username"
+                  type="text"
+                  placeholder="名前を入力"
+                  value={newUserName}
+                  onChange={(e) => setNewUserName(e.target.value)}
+                  onCompositionStart={() => setMemberInputTyping(true)}
+                  onCompositionEnd={() => setMemberInputTyping(false)}
+                  onKeyDown={handleMemberInputKeyPress}
+                ></input>
+                <button
+                  className="py-[8px] px-[16px] ml-[12px] h-full text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded"
+                  onClick={handleAddMember}
+                >
+                  追加
+                </button>
+              </div>
 
-            <div className="flex flex-wrap gap-[12px] m-[20px]">
-              {members?.map((member) => (
-                <MemberChip
-                  key={member.id}
-                  name={member.name}
-                  handleDeleteClick={() => handleDeleteClick(member)}
-                />
-              ))}
-            </div>
-            <div className="flex justify-end items-center">
-              <span className="mr-[12px] text-base text-slate-700">
-                現在のメンバー数 {members.length} 人
-              </span>
-              <button
-                onClick={handleMemberClear}
-                className="py-[4px] px-[8px] text-base  text-white bg-rose-500 hover:bg-rose-600 active:bg-rose-700 rounded-md"
-              >
-                クリア
-              </button>
-            </div>
-          </>
-        </Card>
-        <NumberingTypography numbering={2} text="どうチーム分けしますか？" />
-        <Card>
-          <div className="mx-[32px]">
-            <div className="flex flex-col gap-y-[4px] mb-[12px]">
-              <div className="flex items-center">
-                <input
-                  type="radio"
-                  name="howDivide"
-                  checked={divideMethod === DivideBy.GROUP}
-                  id="byGroupNum"
-                  onChange={() => setDivideMethod(DivideBy.GROUP)}
-                  className="mr-[8px] w-[16px] h-[16px] bg-white checked:bg-blue-600 border border-gray-300 checked:border-blue-600 focus:outline-none"
-                />
-                <label className=" text-gray-800 " htmlFor="byGroupNum">
-                  チーム数
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  type="radio"
-                  name="howDivide"
-                  id="byMemberNum"
-                  checked={divideMethod === DivideBy.MEMBER}
-                  onChange={() => setDivideMethod(DivideBy.MEMBER)}
-                  className="mr-[8px] w-[16px] h-[16px] bg-white checked:bg-blue-600 border border-gray-300 checked:border-blue-600 focus:outline-none"
-                />
-                <label className=" text-gray-800 " htmlFor="byMemberNum">
-                  チームごとのメンバー数
-                </label>
-              </div>
-            </div>
-            <div className="flex justify-center mb-3">
-              <select
-                className="py-[8px] px-[12px] w-4/5 text-base text-gray-700 focus:text-gray-700 rounded border border-gray-400 focus:border-blue-600 focus:outline-none"
-                aria-label="Default select example"
-                value={divideNum}
-                onChange={(e) => setDivideNum(Number(e.target.value))}
-              >
-                <option>
-                  {divideMethod === DivideBy.MEMBER
-                    ? "メンバー数を選択"
-                    : " チーム数を選択"}
-                </option>
-                {suggestSettingNum().map((num) => (
-                  <option key={num} value={num}>
-                    {num}
-                  </option>
+              <div className="flex flex-wrap gap-[12px] m-[20px]">
+                {members?.map((member) => (
+                  <MemberChip
+                    key={member.id}
+                    name={member.name}
+                    handleDeleteClick={() => handleDeleteClick(member)}
+                  />
                 ))}
-              </select>
+              </div>
+              <div className="flex justify-end items-center">
+                <span className="mr-[12px] text-base text-slate-700">
+                  現在のメンバー数 {members.length} 人
+                </span>
+                <button
+                  onClick={handleMemberClear}
+                  className="py-[4px] px-[8px] text-base  text-white bg-rose-500 hover:bg-rose-600 active:bg-rose-700 rounded-md"
+                >
+                  クリア
+                </button>
+              </div>
+            </>
+          </Card>
+        </div>
+        <div>
+          <NumberingTypography numbering={2} text="どうチーム分けしますか？" />
+          <Card>
+            <div className="mx-[32px]">
+              <div className="flex flex-col gap-y-[4px] mb-[12px]">
+                <div className="flex items-center">
+                  <input
+                    type="radio"
+                    name="howDivide"
+                    checked={divideMethod === DivideBy.GROUP}
+                    id="byGroupNum"
+                    onChange={() => setDivideMethod(DivideBy.GROUP)}
+                    className="mr-[8px] w-[16px] h-[16px] bg-white checked:bg-blue-600 border border-gray-300 checked:border-blue-600 focus:outline-none"
+                  />
+                  <label className=" text-gray-800 " htmlFor="byGroupNum">
+                    チーム数
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <input
+                    type="radio"
+                    name="howDivide"
+                    id="byMemberNum"
+                    checked={divideMethod === DivideBy.MEMBER}
+                    onChange={() => setDivideMethod(DivideBy.MEMBER)}
+                    className="mr-[8px] w-[16px] h-[16px] bg-white checked:bg-blue-600 border border-gray-300 checked:border-blue-600 focus:outline-none"
+                  />
+                  <label className=" text-gray-800 " htmlFor="byMemberNum">
+                    チームごとのメンバー数
+                  </label>
+                </div>
+              </div>
+              <div className="flex justify-center mb-3">
+                <select
+                  className="py-[8px] px-[12px] w-4/5 text-base text-gray-700 focus:text-gray-700 rounded border border-gray-400 focus:border-blue-600 focus:outline-none"
+                  aria-label="Default select example"
+                  value={divideNum}
+                  onChange={(e) => setDivideNum(Number(e.target.value))}
+                >
+                  <option>
+                    {divideMethod === DivideBy.MEMBER
+                      ? "メンバー数を選択"
+                      : " チーム数を選択"}
+                  </option>
+                  {suggestSettingNum().map((num) => (
+                    <option key={num} value={num}>
+                      {num}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex justify-center">
+                <button
+                  onClick={handleDivision}
+                  className="py-[4px] px-[16px] text-xl  text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md"
+                >
+                  実行する
+                </button>
+              </div>
             </div>
-            <div className="flex justify-center">
-              <button
-                onClick={handleDivision}
-                className="py-[4px] px-[16px] text-xl  text-white bg-teal-500 hover:bg-teal-600 active:bg-teal-700 rounded-md"
-              >
-                実行する
-              </button>
-            </div>
-          </div>
-        </Card>
+          </Card>
+        </div>
         {groupMember !== undefined && (
           <div>
             <NumberingTypography numbering={3} text="チーム分け結果" />
