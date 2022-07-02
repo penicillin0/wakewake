@@ -229,6 +229,7 @@ const Home: NextPage = () => {
                   className="p-[8px] text-gray-700 rounded border border-slate-400"
                   id="username"
                   type="text"
+                  autoComplete="name"
                   placeholder="名前を入力"
                   value={newUserName}
                   onChange={(e) => setNewUserName(e.target.value)}
