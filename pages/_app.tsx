@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="keywords"
-          content="グループ,決める,席,チーム,分け,飲み会,チーム作成,自動,生成,画像,チーム分け,グループ分け,チーム決め,チームぎめ,簡単,PDF,エクセル,CSV,PNG,JPEG,ランダム,ツール"
+          content="グループ,決める,席,チーム,分け,飲み会,チーム作成,自動,生成,画像,チーム分け,グループ分け,チーム決め,チームぎめ,簡単,PDF,エクセル,CSV,PNG,JPEG,ランダム,ツール,班分け,班"
         />
         <meta
           name="description"
