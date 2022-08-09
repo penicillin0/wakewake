@@ -18,6 +18,12 @@ export const DivideBy = {
   GROUP: "group",
 } as const;
 
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
+}
+
 export type DivideByType = typeof DivideBy[keyof typeof DivideBy];
 
 const Home: NextPage = () => {
