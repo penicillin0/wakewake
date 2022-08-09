@@ -8,6 +8,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
+        <link
+          rel="canonical"
+          href="https://awakewake.jp/tool/team-divider/wakewake"
+        />
         <meta
           name="google-site-verification"
           content="7Ghxx-EskqMs_Kj71i1-f-u0-p92v-SEodaYYx1Njyo"
