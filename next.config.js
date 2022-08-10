@@ -6,7 +6,7 @@ const nextConfig = {
     return [
       {
         source: "/",
-        destination: "https://awakewake.jp/tool/team-divider/wakewake",
+        destination: "https://awakewake.jp/tool/wakewake",
         permanent: true,
         basePath: false,
       },
